@@ -1,0 +1,209 @@
+.app-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 20px 30px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.app-filters .govuk-form-group,
+.app-filters .govuk-select,
+.app-filters .govuk-input {
+  width: 100%;
+  max-width: none;
+}
+
+.app-date-actions,
+.app-live-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 20px;
+  align-items: center;
+}
+
+.app-date-actions .govuk-button,
+.app-live-actions .govuk-button {
+  margin-bottom: 0;
+}
+
+.app-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.app-column {
+  background: #f3f2f1;
+  padding: 15px;
+  min-width: 0;
+}
+
+.app-column--now { border-top: 4px solid #00703c; }
+.app-column--next { border-top: 4px solid #1d70b8; }
+.app-column--later { border-top: 4px solid #505a5f; }
+
+.app-count {
+  font-weight: 400;
+  color: #505a5f;
+}
+
+.roadmap-card {
+  margin-bottom: 15px;
+}
+
+.roadmap-card .govuk-summary-card__title-wrapper {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.roadmap-card .govuk-summary-card__title {
+  flex: 1 1 12rem;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.roadmap-card .govuk-summary-card__actions {
+  flex: 1 0 100%;
+  justify-content: flex-start;
+  margin: 8px 0 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.roadmap-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 10px;
+}
+
+.roadmap-card__tags .govuk-tag,
+.story-card .govuk-tag {
+  max-width: none;
+}
+
+.roadmap-card .govuk-summary-list {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.roadmap-card .govuk-summary-list__row {
+  display: block;
+  margin-bottom: 10px;
+  border-bottom: 0;
+}
+
+.roadmap-card .govuk-summary-list__key,
+.roadmap-card .govuk-summary-list__value {
+  display: block;
+  width: auto;
+  padding: 0;
+}
+
+.roadmap-card .govuk-details__summary {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.app-timeline {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: 10px;
+}
+
+.app-month {
+  flex: 0 0 22rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #f3f2f1;
+  border-top: 4px solid #1d70b8;
+  padding: 15px;
+}
+
+.roadmap-card,
+.story-card,
+.app-month,
+.app-column {
+  overflow-wrap: break-word;
+}
+
+.epic-group + .epic-group {
+  margin-top: 20px;
+}
+
+.story-card__title {
+  margin: 0 0 10px;
+  font-size: 1.1875rem;
+  line-height: 1.3157894737;
+  font-weight: 700;
+}
+
+.story-card {
+  background: #fff;
+  border: 1px solid #b1b4b6;
+  padding: 15px;
+  margin: 0 0 15px;
+}
+
+.story-card .govuk-details__summary {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.app-footer {
+  border-top: 1px solid #b1b4b6;
+  margin-top: 30px;
+  padding-top: 15px;
+}
+
+#view-heading:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 2px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.app-scroll-hint--narrow { display: none; }
+
+@media (max-width: 40.0525em) {
+  .app-filters,
+  .app-board {
+    grid-template-columns: 1fr;
+  }
+
+  .app-timeline {
+    display: block;
+    overflow-x: visible;
+  }
+
+  .app-month {
+    margin-bottom: 20px;
+  }
+
+  .app-scroll-hint--wide { display: none; }
+  .app-scroll-hint--narrow { display: block; }
+
+  .govuk-summary-card__title-wrapper {
+    display: block;
+  }
+}
+
+@media (forced-colors: active) {
+  .app-column,
+  .app-month,
+  .story-card,
+  .roadmap-card {
+    border: 1px solid CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-timeline { scroll-behavior: auto; }
+}

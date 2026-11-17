@@ -1,0 +1,407 @@
+[
+  {
+    "issue_number": 26,
+    "title": "Search datasets by keyword",
+    "epic": 8,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 1,
+    "sprint_start": "2026-11-23"
+  },
+  {
+    "issue_number": 27,
+    "title": "Filter datasets by domain and owner",
+    "epic": 8,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 1,
+    "sprint_start": "2026-11-23"
+  },
+  {
+    "issue_number": 28,
+    "title": "Show key metadata in search results",
+    "epic": 8,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 2,
+    "sprint_start": "2026-12-07"
+  },
+  {
+    "issue_number": 29,
+    "title": "View dataset schema and ownership",
+    "epic": 10,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 2,
+    "sprint_start": "2026-12-07"
+  },
+  {
+    "issue_number": 30,
+    "title": "Preview sample rows",
+    "epic": 10,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 3,
+    "sprint_start": "2026-12-21"
+  },
+  {
+    "issue_number": 31,
+    "title": "Show dataset lineage summary",
+    "epic": 10,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 3,
+    "sprint_start": "2026-12-21"
+  },
+  {
+    "issue_number": 32,
+    "title": "Create and edit glossary terms",
+    "epic": 9,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 4,
+    "sprint_start": "2027-01-04"
+  },
+  {
+    "issue_number": 33,
+    "title": "Link glossary terms to datasets",
+    "epic": 9,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 4,
+    "sprint_start": "2027-01-04"
+  },
+  {
+    "issue_number": 34,
+    "title": "Search the business glossary",
+    "epic": 9,
+    "feature": 1,
+    "milestone": 1,
+    "sprint": 5,
+    "sprint_start": "2027-01-18"
+  },
+  {
+    "issue_number": 35,
+    "title": "Submit an access request with purpose and duration",
+    "epic": 11,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 5,
+    "sprint_start": "2027-01-18"
+  },
+  {
+    "issue_number": 36,
+    "title": "Track my access request status",
+    "epic": 11,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 6,
+    "sprint_start": "2027-02-01"
+  },
+  {
+    "issue_number": 37,
+    "title": "Request access from the dataset page",
+    "epic": 11,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 6,
+    "sprint_start": "2027-02-01"
+  },
+  {
+    "issue_number": 38,
+    "title": "Notify owners of new access requests",
+    "epic": 12,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 7,
+    "sprint_start": "2027-02-15"
+  },
+  {
+    "issue_number": 39,
+    "title": "Approve or reject access requests",
+    "epic": 12,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 7,
+    "sprint_start": "2027-02-15"
+  },
+  {
+    "issue_number": 40,
+    "title": "Notify requesters of the decision",
+    "epic": 12,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 8,
+    "sprint_start": "2027-03-01"
+  },
+  {
+    "issue_number": 41,
+    "title": "Auto-provision warehouse permissions on approval",
+    "epic": 13,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 8,
+    "sprint_start": "2027-03-01"
+  },
+  {
+    "issue_number": 42,
+    "title": "Auto-revoke access when duration ends",
+    "epic": 13,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 9,
+    "sprint_start": "2027-03-15"
+  },
+  {
+    "issue_number": 43,
+    "title": "Audit log of permission changes",
+    "epic": 13,
+    "feature": 2,
+    "milestone": 1,
+    "sprint": 9,
+    "sprint_start": "2027-03-15"
+  },
+  {
+    "issue_number": 44,
+    "title": "Define quality rules for a dataset",
+    "epic": 14,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 10,
+    "sprint_start": "2027-03-29"
+  },
+  {
+    "issue_number": 45,
+    "title": "Run quality rules after each refresh",
+    "epic": 14,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 10,
+    "sprint_start": "2027-03-29"
+  },
+  {
+    "issue_number": 46,
+    "title": "Enable or disable quality rules",
+    "epic": 14,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 10,
+    "sprint_start": "2027-03-29"
+  },
+  {
+    "issue_number": 47,
+    "title": "Alert owners when a quality rule fails",
+    "epic": 15,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 11,
+    "sprint_start": "2027-04-12"
+  },
+  {
+    "issue_number": 48,
+    "title": "Configure quality alert recipients",
+    "epic": 15,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 11,
+    "sprint_start": "2027-04-12"
+  },
+  {
+    "issue_number": 49,
+    "title": "Show a quality score on the dataset page",
+    "epic": 16,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 12,
+    "sprint_start": "2027-04-26"
+  },
+  {
+    "issue_number": 50,
+    "title": "Cross-domain quality dashboard",
+    "epic": 16,
+    "feature": 3,
+    "milestone": 2,
+    "sprint": 12,
+    "sprint_start": "2027-04-26"
+  },
+  {
+    "issue_number": 51,
+    "title": "Assign owners and stewards to datasets",
+    "epic": 17,
+    "feature": 4,
+    "milestone": 2,
+    "sprint": 13,
+    "sprint_start": "2027-05-10"
+  },
+  {
+    "issue_number": 52,
+    "title": "Sync owners and stewards from the HR directory",
+    "epic": 17,
+    "feature": 4,
+    "milestone": 2,
+    "sprint": 13,
+    "sprint_start": "2027-05-10"
+  },
+  {
+    "issue_number": 53,
+    "title": "Stewardship queue for incomplete datasets",
+    "epic": 18,
+    "feature": 4,
+    "milestone": 2,
+    "sprint": 13,
+    "sprint_start": "2027-05-10"
+  },
+  {
+    "issue_number": 54,
+    "title": "Track overdue stewardship tasks",
+    "epic": 18,
+    "feature": 4,
+    "milestone": 2,
+    "sprint": 14,
+    "sprint_start": "2027-05-24"
+  },
+  {
+    "issue_number": 55,
+    "title": "Tag sensitive fields on a dataset",
+    "epic": 19,
+    "feature": 5,
+    "milestone": 2,
+    "sprint": 14,
+    "sprint_start": "2027-05-24"
+  },
+  {
+    "issue_number": 56,
+    "title": "Suggest sensitive field tags from patterns",
+    "epic": 19,
+    "feature": 5,
+    "milestone": 2,
+    "sprint": 14,
+    "sprint_start": "2027-05-24"
+  },
+  {
+    "issue_number": 57,
+    "title": "Apply retention periods to datasets",
+    "epic": 20,
+    "feature": 5,
+    "milestone": 2,
+    "sprint": 15,
+    "sprint_start": "2027-06-07"
+  },
+  {
+    "issue_number": 58,
+    "title": "Flag data overdue for deletion",
+    "epic": 20,
+    "feature": 5,
+    "milestone": 2,
+    "sprint": 15,
+    "sprint_start": "2027-06-07"
+  },
+  {
+    "issue_number": 59,
+    "title": "Ask a question in plain English",
+    "epic": 21,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 16,
+    "sprint_start": "2027-06-21"
+  },
+  {
+    "issue_number": 60,
+    "title": "Review and edit generated SQL",
+    "epic": 21,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 16,
+    "sprint_start": "2027-06-21"
+  },
+  {
+    "issue_number": 61,
+    "title": "Limit the assistant to curated datasets",
+    "epic": 21,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 17,
+    "sprint_start": "2027-07-05"
+  },
+  {
+    "issue_number": 62,
+    "title": "Enforce access permissions on generated queries",
+    "epic": 22,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 17,
+    "sprint_start": "2027-07-05"
+  },
+  {
+    "issue_number": 63,
+    "title": "Apply cost and row limits to generated queries",
+    "epic": 22,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 18,
+    "sprint_start": "2027-07-19"
+  },
+  {
+    "issue_number": 64,
+    "title": "Explain when a query is blocked by guardrails",
+    "epic": 22,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 18,
+    "sprint_start": "2027-07-19"
+  },
+  {
+    "issue_number": 65,
+    "title": "Show SQL, sources and caveats with answers",
+    "epic": 23,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 19,
+    "sprint_start": "2027-08-02"
+  },
+  {
+    "issue_number": 66,
+    "title": "Chart numeric answers",
+    "epic": 23,
+    "feature": 6,
+    "milestone": 3,
+    "sprint": 19,
+    "sprint_start": "2027-08-02"
+  },
+  {
+    "issue_number": 67,
+    "title": "Provide a gateway API with per-team keys",
+    "epic": 24,
+    "feature": 7,
+    "milestone": 3,
+    "sprint": 20,
+    "sprint_start": "2027-08-16"
+  },
+  {
+    "issue_number": 68,
+    "title": "Route requests to the appropriate model",
+    "epic": 24,
+    "feature": 7,
+    "milestone": 3,
+    "sprint": 20,
+    "sprint_start": "2027-08-16"
+  },
+  {
+    "issue_number": 69,
+    "title": "Dashboard of AI usage and spend",
+    "epic": 25,
+    "feature": 7,
+    "milestone": 3,
+    "sprint": 21,
+    "sprint_start": "2027-08-30"
+  },
+  {
+    "issue_number": 70,
+    "title": "Spend alerts per team",
+    "epic": 25,
+    "feature": 7,
+    "milestone": 3,
+    "sprint": 21,
+    "sprint_start": "2027-08-30"
+  }
+]
