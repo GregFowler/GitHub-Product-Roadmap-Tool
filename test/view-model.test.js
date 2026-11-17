@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { roadmapConfig } from "../js/config.js";
+import { roadmapConfig, roadmapServiceName } from "../js/config.js";
 import { resolveToday } from "../js/query.js";
 import { buildSprints } from "../js/sprints.js";
 import { classifyItem, currentSprintNumber } from "../js/status.js";
@@ -104,6 +105,13 @@ test("milestone filter and search narrow the stories", () => {
   assert.equal(bySearch.epicColumns.now.concat(bySearch.epicColumns.next, bySearch.epicColumns.later)[0].item.number, 14);
 });
 
+function monthSection(html, heading) {
+  const sections = html.split("<details").slice(1).map((part) => `<details${part.split("</details>")[0]}`);
+  const section = sections.find((part) => part.includes(`>${heading}<`));
+  assert.ok(section, `missing month section ${heading}`);
+  return section;
+}
+
 test("rendered milestone detail escapes markdown and lists child sprints", () => {
   const model = buildViewModel(roadmap, { today: "2026-11-17" });
   const html = renderResults(model, "milestones", roadmap);
@@ -113,13 +121,61 @@ test("rendered milestone detail escapes markdown and lists child sprints", () =>
   assert.match(html, /Sprint 1/);
   assert.equal(html.includes("<script>"), false);
   assert.match(html, /&lt;script&gt;/);
+  assert.match(
+    html,
+    /<h3 class="govuk-summary-card__title"><a class="govuk-link roadmap-card__title-link" href="https:\/\/example\/m\/1">Outcome 1<span class="govuk-visually-hidden"> on GitHub<\/span><\/a><\/h3>/,
+  );
+  assert.equal(html.includes("View on GitHub"), false);
+  assert.equal(html.includes("govuk-summary-card__actions"), false);
   const stories = renderResults(model, "stories", roadmap);
   assert.match(stories, /November 2026/);
   assert.match(stories, /Epic search/);
-  assert.match(stories, /app-timeline/);
+  assert.equal(stories.includes("app-timeline"), false);
+  assert.equal(stories.includes("Scroll sideways"), false);
+  const november = monthSection(stories, "November 2026");
+  assert.match(november, /<details class="govuk-details app-month" open>/);
+  assert.match(november, /Sprint 1 \(23 November 2026 to 6 December 2026\)/);
+  assert.match(november, /href="https:\/\/example\/8"/);
+  assert.match(november, /href="https:\/\/example\/26"/);
+  assert.match(november, /<strong class="govuk-tag">Sprint 1<\/strong>/);
+  const january = monthSection(stories, "January 2027");
+  assert.match(january, /<details class="govuk-details app-month">/);
+  assert.doesNotMatch(january, / open>/);
   const epics = renderResults(model, "epics", roadmap);
   assert.match(epics, /Feature catalogue/);
   assert.match(epics, /Outcome 1/);
+  assert.match(
+    epics,
+    /<h3 class="govuk-summary-card__title"><a class="govuk-link roadmap-card__title-link" href="https:\/\/example\/8">Epic search<span class="govuk-visually-hidden"> on GitHub<\/span><\/a><\/h3>/,
+  );
+  assert.equal(epics.includes("View on GitHub"), false);
+});
+
+test("story months open for the current month and for current-sprint work", () => {
+  const duringFirstSprint = renderResults(buildViewModel(roadmap, { today: "2026-12-01" }), "stories", roadmap);
+  assert.match(monthSection(duringFirstSprint, "November 2026"), / open>/);
+  assert.doesNotMatch(monthSection(duringFirstSprint, "January 2027"), / open>/);
+
+  const januaryToday = renderResults(buildViewModel(roadmap, { today: "2027-01-18" }), "stories", roadmap);
+  assert.match(monthSection(januaryToday, "January 2027"), / open>/);
+  assert.match(monthSection(januaryToday, "January 2027"), /Sprint 4 \(4 January 2027 to 17 January 2027\)/);
+  assert.doesNotMatch(monthSection(januaryToday, "November 2026"), / open>/);
+});
+
+test("the service name follows the configured repository", async () => {
+  assert.equal(roadmapServiceName(), "Product roadmap for Demo-Product-Map-Repo");
+  assert.equal(roadmapServiceName({ repo: "Example-Repo" }), "Product roadmap for Example-Repo");
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const name = roadmapServiceName();
+  assert.match(html, new RegExp(`<title>${name}</title>`));
+  assert.match(html, new RegExp(`id="service-name"[^>]*>${name}</a>`));
+  assert.match(html, new RegExp(`id="service-caption">${name}</span>`));
+  assert.equal(html.includes('id="search"'), false);
+  assert.equal(html.includes("View as of"), false);
+  assert.match(html, /id="milestone-filter"/);
+  const css = await readFile(new URL("../css/app.css", import.meta.url), "utf8");
+  assert.match(css, /max-width:\s*1200px/);
+  assert.equal(css.includes("overflow-x"), false);
 });
 
 test("count labels use story, epic and milestone plurals", () => {
