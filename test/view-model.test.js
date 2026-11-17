@@ -2,12 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { roadmapConfig, roadmapServiceName } from "../js/config.js";
-import { formatDateRange } from "../js/dates.js";
+import { formatDateRange, formatShortDateRange } from "../js/dates.js";
 import { resolveToday, showsMilestoneFilter } from "../js/query.js";
 import { buildSprints } from "../js/sprints.js";
 import { classifyItem, currentSprintNumber } from "../js/status.js";
+import { barPlacement, cssPercent, timelineScale } from "../js/timeline.js";
 import { buildViewModel } from "../js/view-model.js";
-import { currentSprintText, renderAsOf, renderResults, viewCopy } from "../js/render.js";
+import { announceView, currentSprintText, renderAsOf, renderResults, renderViewStatus, viewCopy } from "../js/render.js";
 
 const sprints = buildSprints(roadmapConfig.sprints);
 
@@ -124,8 +125,12 @@ test("rendered milestone detail escapes markdown and lists child sprints", () =>
   assert.match(html, /&lt;script&gt;/);
   assert.match(
     html,
-    /<h3 class="govuk-summary-card__title"><a class="govuk-link roadmap-card__title-link" href="https:\/\/example\/m\/1">Outcome 1<span class="govuk-visually-hidden"> on GitHub<\/span><\/a><\/h3>/,
+    /<h2 class="govuk-heading-s app-timeline__title"><a class="govuk-link" href="https:\/\/example\/m\/1">Outcome 1<span class="govuk-visually-hidden"> on GitHub<\/span><\/a><\/h2>/,
   );
+  assert.match(html, /class="app-timeline"/);
+  assert.match(html, /Not scheduled/);
+  assert.equal(html.includes("app-column"), false);
+  assert.equal(html.includes("Current sprint is"), false);
   assert.equal(html.includes("View on GitHub"), false);
   assert.equal(html.includes("govuk-summary-card__actions"), false);
   const stories = renderResults(model, "stories", roadmap);
@@ -207,6 +212,8 @@ test("the milestone filter is hidden on the milestones view", () => {
 test("the current sprint line is the sprint and its dates", () => {
   assert.equal(formatDateRange("2026-11-23", "2026-12-06"), "23 November to 6 December 2026");
   assert.equal(formatDateRange("2026-12-21", "2027-01-03"), "21 December 2026 to 3 January 2027");
+  assert.equal(formatShortDateRange("2026-11-23", "2027-03-15"), "23 Nov 2026 to 15 Mar 2027");
+  assert.equal(formatShortDateRange("2027-03-15", "2027-03-28"), "15 Mar to 28 Mar 2027");
   const model = buildViewModel(roadmap, { today: "2026-11-17" });
   assert.equal(currentSprintText(model.currentSprint), "Current sprint is Sprint 1 (23 November to 6 December 2026)");
   const html = renderAsOf(model, { dateError: "" });
@@ -216,6 +223,46 @@ test("the current sprint line is the sprint and its dates", () => {
   assert.equal(html.includes("has not started"), false);
   const invalid = renderAsOf(model, { dateError: "The date in the address is not valid. Showing today." });
   assert.match(invalid, /not valid/);
+  assert.equal(renderViewStatus(model, "milestones"), "");
+  assert.match(renderViewStatus(model, "epics"), /Current sprint is <strong>Sprint 1<\/strong>/);
+  assert.match(renderViewStatus(model, "stories"), /Current sprint is <strong>Sprint 1<\/strong>/);
+  const milestoneError = renderViewStatus(model, "milestones", { dateError: "The date in the address is not valid. Showing today." });
+  assert.match(milestoneError, /not valid/);
+  assert.equal(milestoneError.includes("Current sprint is"), false);
+  assert.equal(announceView("milestones", "Milestones", model.currentSprint), "Milestones.");
+  assert.equal(announceView("stories", "Stories", model.currentSprint), "Stories. Current sprint is Sprint 1 (23 November to 6 December 2026).");
+});
+
+test("milestone bars use the child-story span and the date override", () => {
+  const today = "2026-11-17";
+  const model = buildViewModel(roadmap, { today });
+  assert.deepEqual(model.milestones.map((entry) => [entry.item.number, entry.span]), [
+    [1, { earliestSprint: 1, latestSprint: 4, start: "2026-11-23", end: "2027-01-17" }],
+    [2, { earliestSprint: 9, latestSprint: 9, start: "2027-03-15", end: "2027-03-28" }],
+    [3, null],
+  ]);
+  const html = renderResults(model, "milestones", roadmap);
+  const scale = timelineScale(model.milestones.map((entry) => entry.span), today);
+  const outcome1 = barPlacement("2026-11-23", "2027-01-17", scale.months);
+  assert.match(html, new RegExp(`aria-label="Now, 23 November 2026 to 17 January 2027"`));
+  assert.match(html, /Now, 23 Nov 2026 to 17 Jan 2027/);
+  assert.match(html, /Later, 15 Mar to 28 Mar 2027/);
+  assert.match(html, /app-timeline__bar--now/);
+  assert.match(html, /app-timeline__bar--later/);
+  assert.match(html, new RegExp(`left: ${cssPercent(outcome1.left)}`));
+  assert.match(html, new RegExp(`width: ${cssPercent(outcome1.width)}`));
+  assert.match(html, new RegExp(`Today, 17 November 2026`));
+  assert.match(html, /Q4 ’26/);
+  assert.match(html, /Q1 ’27/);
+  assert.equal(html.includes("app-timeline__bar--next"), false);
+
+  const laterToday = "2027-01-10";
+  const later = renderResults(buildViewModel(roadmap, { today: laterToday }), "milestones", roadmap);
+  const laterScale = timelineScale(model.milestones.map((entry) => entry.span), laterToday);
+  assert.match(later, /app-timeline__bar--next/);
+  assert.match(later, /Today, 10 January 2027/);
+  assert.notEqual(cssPercent(scale.todayFraction), cssPercent(laterScale.todayFraction));
+  assert.match(later, new RegExp(cssPercent(laterScale.todayFraction).replace(".", "\\.")));
 });
 
 test("a closed story shows a closed status in the table", () => {

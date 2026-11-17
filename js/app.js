@@ -2,7 +2,7 @@ import { roadmapConfig, roadmapServiceName } from "./config.js";
 import { loadSnapshot } from "./data.js";
 import { escapeHtml } from "./markdown.js";
 import { parseView, resolveToday, showsMilestoneFilter } from "./query.js";
-import { currentSprintText, renderAsOf, renderResults, viewCopy } from "./render.js";
+import { announceView, renderResults, renderViewStatus, viewCopy } from "./render.js";
 import { buildViewModel } from "./view-model.js";
 
 const state = {
@@ -101,11 +101,11 @@ function renderDynamic({ focusHeading = false } = {}) {
   document.getElementById("view-heading-text").textContent = copy.heading;
   document.title = roadmapServiceName(roadmapConfig);
   document.getElementById("view-intro").textContent = copy.intro;
-  document.getElementById("as-of").innerHTML = renderAsOf(model, {
+  document.getElementById("as-of").innerHTML = renderViewStatus(model, state.view, {
     dateError: resolved.error,
   });
   document.getElementById("results").innerHTML = renderResults(model, state.view, state.roadmap);
-  document.getElementById("app-status").textContent = `${copy.heading}. ${currentSprintText(model.currentSprint)}.`;
+  document.getElementById("app-status").textContent = announceView(state.view, copy.heading, model.currentSprint);
   syncNav();
   syncForm();
   if (focusHeading) heading.focus();
