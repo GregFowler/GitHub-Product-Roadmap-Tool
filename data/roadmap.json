@@ -1,0 +1,1227 @@
+{
+  "generatedAt": "2026-11-17T12:52:50.703Z",
+  "source": {
+    "owner": "GregFowler",
+    "repo": "Demo-Product-Map-Repo",
+    "repoUrl": "https://github.com/GregFowler/Demo-Product-Map-Repo",
+    "projectLogin": "GregFowler",
+    "projectOwnerType": "user",
+    "projectNumber": 2,
+    "projectUrl": "https://github.com/users/GregFowler/projects/2",
+    "projectTitle": "Demo Product Roadmap",
+    "iterationField": "Sprint",
+    "issueSource": "graphql",
+    "sprintAssignments": "sprint_plan",
+    "sprintCalendar": "config"
+  },
+  "sprints": [
+    {
+      "number": 1,
+      "title": "Sprint 1",
+      "start": "2026-11-23",
+      "end": "2026-12-06"
+    },
+    {
+      "number": 2,
+      "title": "Sprint 2",
+      "start": "2026-12-07",
+      "end": "2026-12-20"
+    },
+    {
+      "number": 3,
+      "title": "Sprint 3",
+      "start": "2026-12-21",
+      "end": "2027-01-03"
+    },
+    {
+      "number": 4,
+      "title": "Sprint 4",
+      "start": "2027-01-04",
+      "end": "2027-01-17"
+    },
+    {
+      "number": 5,
+      "title": "Sprint 5",
+      "start": "2027-01-18",
+      "end": "2027-01-31"
+    },
+    {
+      "number": 6,
+      "title": "Sprint 6",
+      "start": "2027-02-01",
+      "end": "2027-02-14"
+    },
+    {
+      "number": 7,
+      "title": "Sprint 7",
+      "start": "2027-02-15",
+      "end": "2027-02-28"
+    },
+    {
+      "number": 8,
+      "title": "Sprint 8",
+      "start": "2027-03-01",
+      "end": "2027-03-14"
+    },
+    {
+      "number": 9,
+      "title": "Sprint 9",
+      "start": "2027-03-15",
+      "end": "2027-03-28"
+    },
+    {
+      "number": 10,
+      "title": "Sprint 10",
+      "start": "2027-03-29",
+      "end": "2027-04-11"
+    },
+    {
+      "number": 11,
+      "title": "Sprint 11",
+      "start": "2027-04-12",
+      "end": "2027-04-25"
+    },
+    {
+      "number": 12,
+      "title": "Sprint 12",
+      "start": "2027-04-26",
+      "end": "2027-05-09"
+    },
+    {
+      "number": 13,
+      "title": "Sprint 13",
+      "start": "2027-05-10",
+      "end": "2027-05-23"
+    },
+    {
+      "number": 14,
+      "title": "Sprint 14",
+      "start": "2027-05-24",
+      "end": "2027-06-06"
+    },
+    {
+      "number": 15,
+      "title": "Sprint 15",
+      "start": "2027-06-07",
+      "end": "2027-06-20"
+    },
+    {
+      "number": 16,
+      "title": "Sprint 16",
+      "start": "2027-06-21",
+      "end": "2027-07-04"
+    },
+    {
+      "number": 17,
+      "title": "Sprint 17",
+      "start": "2027-07-05",
+      "end": "2027-07-18"
+    },
+    {
+      "number": 18,
+      "title": "Sprint 18",
+      "start": "2027-07-19",
+      "end": "2027-08-01"
+    },
+    {
+      "number": 19,
+      "title": "Sprint 19",
+      "start": "2027-08-02",
+      "end": "2027-08-15"
+    },
+    {
+      "number": 20,
+      "title": "Sprint 20",
+      "start": "2027-08-16",
+      "end": "2027-08-29"
+    },
+    {
+      "number": 21,
+      "title": "Sprint 21",
+      "start": "2027-08-30",
+      "end": "2027-09-12"
+    },
+    {
+      "number": 22,
+      "title": "Sprint 22",
+      "start": "2027-09-13",
+      "end": "2027-09-26"
+    },
+    {
+      "number": 23,
+      "title": "Sprint 23",
+      "start": "2027-09-27",
+      "end": "2027-10-10"
+    },
+    {
+      "number": 24,
+      "title": "Sprint 24",
+      "start": "2027-10-11",
+      "end": "2027-10-24"
+    },
+    {
+      "number": 25,
+      "title": "Sprint 25",
+      "start": "2027-10-25",
+      "end": "2027-11-07"
+    },
+    {
+      "number": 26,
+      "title": "Sprint 26",
+      "start": "2027-11-08",
+      "end": "2027-11-21"
+    }
+  ],
+  "milestones": [
+    {
+      "number": 1,
+      "title": "Outcome 1: Users can self-serve trusted data",
+      "description": "Outcome: analysts and service teams can find, understand and access trusted data without raising a ticket. Measure: 50% fewer access requests to the data team; catalogue used weekly by 300+ users.",
+      "dueOn": "2027-03-31",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/milestone/1",
+      "state": "open"
+    },
+    {
+      "number": 2,
+      "title": "Outcome 2: Data is reliable and well governed",
+      "description": "Outcome: teams trust the numbers because quality issues are caught early and ownership is clear. Measure: 90% of critical datasets with quality checks; data incidents resolved within 2 working days.",
+      "dueOn": "2027-06-30",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/milestone/2",
+      "state": "open"
+    },
+    {
+      "number": 3,
+      "title": "Outcome 3: Faster insight with AI-assisted analysis",
+      "description": "Outcome: users get answers from data faster with safe, governed AI tools. Measure: median time from question to answer down 40%; 200+ monthly active users of AI tools.",
+      "dueOn": "2027-12-31",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/milestone/3",
+      "state": "open"
+    }
+  ],
+  "features": [
+    {
+      "number": 1,
+      "title": "Feature: Searchable data catalogue",
+      "body": "Give users one place to discover datasets, owners and definitions.\n\nOutcome: Outcome 1: Users can self-serve trusted data\n\n## Epics\n- [ ] Epic: Dataset search and filters\n- [ ] Epic: Dataset detail pages\n- [ ] Epic: Business glossary",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/1",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: high"
+      ],
+      "milestone": 1
+    },
+    {
+      "number": 2,
+      "title": "Feature: Self-service access requests",
+      "body": "Let users request and receive dataset access through an approval workflow.\n\nOutcome: Outcome 1: Users can self-serve trusted data\n\n## Epics\n- [ ] Epic: Access request form\n- [ ] Epic: Owner approval workflow\n- [ ] Epic: Automatic permission provisioning",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/2",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: high"
+      ],
+      "milestone": 1
+    },
+    {
+      "number": 3,
+      "title": "Feature: Automated data quality checks",
+      "body": "Detect broken, late or anomalous data before users do.\n\nOutcome: Outcome 2: Data is reliable and well governed\n\n## Epics\n- [ ] Epic: Quality rules engine\n- [ ] Epic: Quality alerts\n- [ ] Epic: Quality scorecards",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/3",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: high"
+      ],
+      "milestone": 2
+    },
+    {
+      "number": 4,
+      "title": "Feature: Data ownership and stewardship",
+      "body": "Make every critical dataset have a named owner and steward with clear responsibilities.\n\nOutcome: Outcome 2: Data is reliable and well governed\n\n## Epics\n- [ ] Epic: Ownership registry\n- [ ] Epic: Stewardship task queue",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/4",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: medium"
+      ],
+      "milestone": 2
+    },
+    {
+      "number": 5,
+      "title": "Feature: Data classification and retention",
+      "body": "Classify sensitive data and apply retention rules consistently.\n\nOutcome: Outcome 2: Data is reliable and well governed\n\n## Epics\n- [ ] Epic: Sensitive field tagging\n- [ ] Epic: Retention policy automation",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/5",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: medium"
+      ],
+      "milestone": 2
+    },
+    {
+      "number": 6,
+      "title": "Feature: Natural-language query assistant",
+      "body": "Let users ask questions in plain English and get governed SQL and charts back.\n\nOutcome: Outcome 3: Faster insight with AI-assisted analysis\n\n## Epics\n- [ ] Epic: Text-to-SQL prototype\n- [ ] Epic: Query guardrails\n- [ ] Epic: Answer explanations",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/6",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: medium"
+      ],
+      "milestone": 3
+    },
+    {
+      "number": 7,
+      "title": "Feature: Secure AI gateway",
+      "body": "Provide one approved route for teams to use large language models with logging and data protection.\n\nOutcome: Outcome 3: Faster insight with AI-assisted analysis\n\n## Epics\n- [ ] Epic: Model routing and API keys\n- [ ] Epic: Usage monitoring and cost reporting",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/7",
+      "state": "open",
+      "labels": [
+        "feature",
+        "priority: low"
+      ],
+      "milestone": 3
+    }
+  ],
+  "epics": [
+    {
+      "number": 8,
+      "title": "Epic: Dataset search and filters",
+      "body": "Full-text search across dataset names, descriptions and tags, with filters by domain and owner.\n\nParent feature: #1\nOutcome: Outcome 1: Users can self-serve trusted data",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/8",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 1,
+      "feature": 1
+    },
+    {
+      "number": 9,
+      "title": "Epic: Business glossary",
+      "body": "Manage shared definitions of key business terms and link them to datasets.\n\nParent feature: #1\nOutcome: Outcome 1: Users can self-serve trusted data",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/9",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 1,
+      "feature": 1
+    },
+    {
+      "number": 10,
+      "title": "Epic: Dataset detail pages",
+      "body": "Show schema, owner, refresh schedule, sample rows and lineage summary for each dataset.\n\nParent feature: #1\nOutcome: Outcome 1: Users can self-serve trusted data",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/10",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 1,
+      "feature": 1
+    },
+    {
+      "number": 11,
+      "title": "Epic: Access request form",
+      "body": "Request access to a dataset with a stated purpose and duration.\n\nParent feature: #2\nOutcome: Outcome 1: Users can self-serve trusted data",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/11",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 1,
+      "feature": 2
+    },
+    {
+      "number": 12,
+      "title": "Epic: Owner approval workflow",
+      "body": "Data owners approve or reject requests with notifications and an audit trail.\n\nParent feature: #2\nOutcome: Outcome 1: Users can self-serve trusted data",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/12",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 1,
+      "feature": 2
+    },
+    {
+      "number": 13,
+      "title": "Epic: Automatic permission provisioning",
+      "body": "Grant and revoke warehouse permissions automatically once approved.\n\nParent feature: #2\nOutcome: Outcome 1: Users can self-serve trusted data",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/13",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 1,
+      "feature": 2
+    },
+    {
+      "number": 14,
+      "title": "Epic: Quality rules engine",
+      "body": "Define freshness, completeness and validity rules per dataset.\n\nParent feature: #3\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/14",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 3
+    },
+    {
+      "number": 15,
+      "title": "Epic: Quality alerts",
+      "body": "Alert dataset owners in Slack and email when rules fail.\n\nParent feature: #3\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/15",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 3
+    },
+    {
+      "number": 16,
+      "title": "Epic: Quality scorecards",
+      "body": "Show a quality score on each dataset page and a cross-domain dashboard.\n\nParent feature: #3\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/16",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 3
+    },
+    {
+      "number": 17,
+      "title": "Epic: Ownership registry",
+      "body": "Record owners and stewards against datasets, synced from the HR directory.\n\nParent feature: #4\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/17",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 4
+    },
+    {
+      "number": 18,
+      "title": "Epic: Stewardship task queue",
+      "body": "Give stewards a queue of datasets missing descriptions, classifications or reviews.\n\nParent feature: #4\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/18",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 4
+    },
+    {
+      "number": 19,
+      "title": "Epic: Sensitive field tagging",
+      "body": "Tag personal and sensitive fields, with suggestions from pattern detection.\n\nParent feature: #5\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/19",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 5
+    },
+    {
+      "number": 20,
+      "title": "Epic: Retention policy automation",
+      "body": "Apply retention periods and flag data overdue for deletion.\n\nParent feature: #5\nOutcome: Outcome 2: Data is reliable and well governed",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/20",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 2,
+      "feature": 5
+    },
+    {
+      "number": 21,
+      "title": "Epic: Text-to-SQL prototype",
+      "body": "Prototype question-to-SQL generation against the catalogue's curated datasets.\n\nParent feature: #6\nOutcome: Outcome 3: Faster insight with AI-assisted analysis",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/21",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 3,
+      "feature": 6
+    },
+    {
+      "number": 22,
+      "title": "Epic: Query guardrails",
+      "body": "Enforce access permissions and cost limits on generated queries.\n\nParent feature: #6\nOutcome: Outcome 3: Faster insight with AI-assisted analysis",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/22",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 3,
+      "feature": 6
+    },
+    {
+      "number": 23,
+      "title": "Epic: Answer explanations",
+      "body": "Show the generated SQL, datasets used and caveats alongside every answer.\n\nParent feature: #6\nOutcome: Outcome 3: Faster insight with AI-assisted analysis",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/23",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 3,
+      "feature": 6
+    },
+    {
+      "number": 24,
+      "title": "Epic: Model routing and API keys",
+      "body": "Single gateway API with per-team keys and model routing.\n\nParent feature: #7\nOutcome: Outcome 3: Faster insight with AI-assisted analysis",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/24",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 3,
+      "feature": 7
+    },
+    {
+      "number": 25,
+      "title": "Epic: Usage monitoring and cost reporting",
+      "body": "Dashboards of usage and spend by team and model.\n\nParent feature: #7\nOutcome: Outcome 3: Faster insight with AI-assisted analysis",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/25",
+      "state": "open",
+      "labels": [
+        "epic"
+      ],
+      "milestone": 3,
+      "feature": 7
+    }
+  ],
+  "stories": [
+    {
+      "number": 26,
+      "title": "Search datasets by keyword",
+      "body": "As an analyst, I want to search datasets by name, description and tags so that I can find relevant data quickly.\n\n## Acceptance criteria\n\n- [ ] A search box on the catalogue accepts a keyword and returns matching datasets\n- [ ] Matches include dataset name, description and tags, case-insensitively\n- [ ] Results update as the user types, or after they submit the search\n- [ ] An empty or no-match result explains that nothing was found and how to refine the search\n\nParent epic: #8\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/26",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 8,
+      "sprint": 1,
+      "sprintStart": "2026-11-23",
+      "sprintEnd": "2026-12-06"
+    },
+    {
+      "number": 27,
+      "title": "Filter datasets by domain and owner",
+      "body": "As a service team member, I want to filter datasets by domain and owner so that I can narrow results to my area.\n\n## Acceptance criteria\n\n- [ ] Users can filter the catalogue by domain and by owner, including after a keyword search\n- [ ] Filters can be combined, and the result count updates to match\n- [ ] Applied filters are visible and can be cleared individually or all at once\n- [ ] The domain and owner lists only include values that exist in the catalogue\n\nParent epic: #8\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/27",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 8,
+      "sprint": 1,
+      "sprintStart": "2026-11-23",
+      "sprintEnd": "2026-12-06"
+    },
+    {
+      "number": 28,
+      "title": "Show key metadata in search results",
+      "body": "As an analyst, I want search results to show owner, last refreshed date and domain so that I can judge relevance without opening each dataset.\n\n## Acceptance criteria\n\n- [ ] Each result shows the dataset name, domain, owner and last refreshed date\n- [ ] Missing metadata is shown as 'Not recorded' rather than left blank\n- [ ] Results remain scannable on a typical laptop viewport without horizontal scrolling\n\nParent epic: #8\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/28",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 8,
+      "sprint": 1,
+      "sprintStart": "2026-11-23",
+      "sprintEnd": "2026-12-06"
+    },
+    {
+      "number": 29,
+      "title": "View dataset schema and ownership",
+      "body": "As an analyst, I want to see a dataset's schema, owner and refresh schedule on one page so that I can decide if it is fit for my work.\n\n## Acceptance criteria\n\n- [ ] The dataset page shows name, description, owner, steward, domain and refresh schedule\n- [ ] The schema lists field names, types and descriptions where available\n- [ ] The page is reachable from a search result\n- [ ] A dataset that cannot be found returns a clear not-found message\n\nParent epic: #10\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/29",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 10,
+      "sprint": 2,
+      "sprintStart": "2026-12-07",
+      "sprintEnd": "2026-12-20"
+    },
+    {
+      "number": 30,
+      "title": "Preview sample rows",
+      "body": "As an analyst, I want to preview sample rows for a dataset so that I can check the data looks as I expect before requesting access.\n\n## Acceptance criteria\n\n- [ ] The dataset page shows a limited sample of rows (for example the first 10)\n- [ ] Sample columns match the published schema\n- [ ] If the user does not have permission to preview, the page explains this and does not show row values\n- [ ] Sensitive fields already tagged are masked in the preview\n\nParent epic: #10\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/30",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 10,
+      "sprint": 2,
+      "sprintStart": "2026-12-07",
+      "sprintEnd": "2026-12-20"
+    },
+    {
+      "number": 31,
+      "title": "Show dataset lineage summary",
+      "body": "As a data owner, I want a lineage summary on the dataset page so that users understand where the data comes from.\n\n## Acceptance criteria\n\n- [ ] The dataset page shows immediate upstream sources and immediate downstream consumers where known\n- [ ] Each lineage item links to the related dataset page when that dataset is in the catalogue\n- [ ] If lineage is not yet recorded, the page states that rather than showing an empty diagram\n\nParent epic: #10\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/31",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 10,
+      "sprint": 2,
+      "sprintStart": "2026-12-07",
+      "sprintEnd": "2026-12-20"
+    },
+    {
+      "number": 32,
+      "title": "Create and edit glossary terms",
+      "body": "As a data steward, I want to create and edit business glossary terms so that we have shared definitions of key terms.\n\n## Acceptance criteria\n\n- [ ] A steward can create a term with a name, definition and optional synonyms\n- [ ] A steward can edit or retire a term, and a history of changes is retained\n- [ ] Duplicate term names are rejected with a clear error\n- [ ] Only stewards or glossary editors can change terms; other users can view them\n\nParent epic: #9\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/32",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 9,
+      "sprint": 3,
+      "sprintStart": "2026-12-21",
+      "sprintEnd": "2027-01-03"
+    },
+    {
+      "number": 33,
+      "title": "Link glossary terms to datasets",
+      "body": "As an analyst, I want glossary terms to be linked to datasets so that I can understand what a field or dataset means.\n\n## Acceptance criteria\n\n- [ ] A steward can link a glossary term to a dataset or to a specific field\n- [ ] The dataset page lists linked terms with their definitions\n- [ ] The glossary term page lists the datasets and fields it is linked to\n- [ ] Removing a link does not delete the term or the dataset\n\nParent epic: #9\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/33",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 9,
+      "sprint": 3,
+      "sprintStart": "2026-12-21",
+      "sprintEnd": "2027-01-03"
+    },
+    {
+      "number": 34,
+      "title": "Search the business glossary",
+      "body": "As a service team member, I want to search the glossary by term or synonym so that I can look up definitions without asking the data team.\n\n## Acceptance criteria\n\n- [ ] Users can search glossary terms by name, synonym or words in the definition\n- [ ] Results show the term name, a short definition and any linked datasets\n- [ ] A no-match result explains that no term was found\n\nParent epic: #9\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/34",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 1,
+      "epic": 9,
+      "sprint": 4,
+      "sprintStart": "2027-01-04",
+      "sprintEnd": "2027-01-17"
+    },
+    {
+      "number": 35,
+      "title": "Submit an access request with purpose and duration",
+      "body": "As an analyst, I want to request access to a dataset with a stated purpose and duration so that the owner can make an informed decision.\n\n## Acceptance criteria\n\n- [ ] The form requires a purpose and a requested duration (start and end, or a period)\n- [ ] The request is stored against the dataset and the requester\n- [ ] A confirmation is shown, including a request reference\n- [ ] Incomplete forms cannot be submitted and missing fields are highlighted\n\nParent epic: #11\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/35",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 11,
+      "sprint": 5,
+      "sprintStart": "2027-01-18",
+      "sprintEnd": "2027-01-31"
+    },
+    {
+      "number": 36,
+      "title": "Track my access request status",
+      "body": "As a service team member, I want to see the status of my access requests so that I know when I can start using the data.\n\n## Acceptance criteria\n\n- [ ] A requester can see a list of their requests with status (submitted, approved, rejected, expired)\n- [ ] Each item shows the dataset, date submitted and current status\n- [ ] The list updates when an owner makes a decision\n\nParent epic: #11\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/36",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 11,
+      "sprint": 5,
+      "sprintStart": "2027-01-18",
+      "sprintEnd": "2027-01-31"
+    },
+    {
+      "number": 37,
+      "title": "Request access from the dataset page",
+      "body": "As an analyst, I want to request access from the dataset detail page so that I do not have to raise a separate ticket.\n\n## Acceptance criteria\n\n- [ ] The dataset page has a request-access action that opens the access request form with the dataset pre-selected\n- [ ] If the user already has active access, the page says so instead of inviting a duplicate request\n- [ ] If a request is already pending, the page links to that request rather than creating another\n\nParent epic: #11\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/37",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 11,
+      "sprint": 6,
+      "sprintStart": "2027-02-01",
+      "sprintEnd": "2027-02-14"
+    },
+    {
+      "number": 38,
+      "title": "Notify owners of new access requests",
+      "body": "As a data owner, I want to be notified when someone requests access to my dataset so that I can respond promptly.\n\n## Acceptance criteria\n\n- [ ] When a request is submitted, the dataset owner receives an email notification\n- [ ] The notification includes the requester, dataset, purpose, duration and a link to review it\n- [ ] If no owner is recorded, the request is routed to a fallback steward or data-team inbox\n\nParent epic: #12\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/38",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 12,
+      "sprint": 7,
+      "sprintStart": "2027-02-15",
+      "sprintEnd": "2027-02-28"
+    },
+    {
+      "number": 39,
+      "title": "Approve or reject access requests",
+      "body": "As a data owner, I want to approve or reject a request with a reason so that there is a clear audit trail.\n\n## Acceptance criteria\n\n- [ ] An owner can approve or reject a pending request and must provide a reason when rejecting\n- [ ] The decision, actor, timestamp and reason are stored and cannot be silently altered\n- [ ] Only the dataset owner or a designated delegate can decide on the request\n- [ ] A request cannot be decided twice; a second attempt explains it is already closed\n\nParent epic: #12\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/39",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 12,
+      "sprint": 7,
+      "sprintStart": "2027-02-15",
+      "sprintEnd": "2027-02-28"
+    },
+    {
+      "number": 40,
+      "title": "Notify requesters of the decision",
+      "body": "As an analyst, I want to be notified when my request is approved or rejected so that I know the outcome without chasing the owner.\n\n## Acceptance criteria\n\n- [ ] The requester receives an email when the request is approved or rejected\n- [ ] A rejection email includes the owner's reason\n- [ ] An approval email states the access duration\n- [ ] The request status in the requester's list matches the notification\n\nParent epic: #12\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/40",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 12,
+      "sprint": 8,
+      "sprintStart": "2027-03-01",
+      "sprintEnd": "2027-03-14"
+    },
+    {
+      "number": 41,
+      "title": "Auto-provision warehouse permissions on approval",
+      "body": "As a data owner, I want approved requests to grant warehouse permissions automatically so that I do not have to provision access by hand.\n\n## Acceptance criteria\n\n- [ ] When a request is approved, the corresponding warehouse permission is granted for the requester and dataset\n- [ ] A failure to provision is recorded, the owner is notified, and the request is marked as needing attention\n- [ ] Successful provisioning is reflected on the request record with a timestamp\n\nParent epic: #13\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/41",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 13,
+      "sprint": 8,
+      "sprintStart": "2027-03-01",
+      "sprintEnd": "2027-03-14"
+    },
+    {
+      "number": 42,
+      "title": "Auto-revoke access when duration ends",
+      "body": "As an analyst, I want my access to be revoked automatically when the agreed duration ends so that unused access is not left open.\n\n## Acceptance criteria\n\n- [ ] When the approved duration ends, warehouse permission is revoked automatically\n- [ ] The requester is notified before expiry and again when access is revoked\n- [ ] The request record shows an expired or revoked status and the revoke timestamp\n- [ ] A failed revoke is logged and raised to the platform team\n\nParent epic: #13\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/42",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 13,
+      "sprint": 9,
+      "sprintStart": "2027-03-15",
+      "sprintEnd": "2027-03-28"
+    },
+    {
+      "number": 43,
+      "title": "Audit log of permission changes",
+      "body": "As a platform engineer, I want a log of permission grants and revokes so that we can audit who had access and when.\n\n## Acceptance criteria\n\n- [ ] Every grant and revoke is logged with actor or system process, dataset, user, timestamp and related request\n- [ ] Authorised auditors can search the log by user, dataset and date range\n- [ ] Log entries cannot be edited or deleted through the application\n\nParent epic: #13\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/43",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 1,
+      "feature": 2,
+      "epic": 13,
+      "sprint": 9,
+      "sprintStart": "2027-03-15",
+      "sprintEnd": "2027-03-28"
+    },
+    {
+      "number": 44,
+      "title": "Define quality rules for a dataset",
+      "body": "As a data steward, I want to define freshness, completeness and validity rules for a dataset so that quality issues are caught automatically.\n\n## Acceptance criteria\n\n- [ ] A steward can add freshness, completeness and validity rules to a dataset, each with a threshold or condition\n- [ ] Rules are saved against the dataset and can be viewed on its quality settings\n- [ ] Invalid rule configuration (for example a missing threshold) is rejected with a clear error\n\nParent epic: #14\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/44",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 14,
+      "sprint": 3,
+      "sprintStart": "2026-12-21",
+      "sprintEnd": "2027-01-03"
+    },
+    {
+      "number": 45,
+      "title": "Run quality rules after each refresh",
+      "body": "As a data engineer, I want quality rules to run on a schedule after each refresh so that checks keep pace with the data.\n\n## Acceptance criteria\n\n- [ ] Enabled rules run automatically after a dataset refresh, or on a configured schedule if no refresh event exists\n- [ ] Each run stores a pass or fail result, the time of the run and a short summary\n- [ ] A failed or skipped run is visible to the steward and does not block later runs\n\nParent epic: #14\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/45",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 14,
+      "sprint": 4,
+      "sprintStart": "2027-01-04",
+      "sprintEnd": "2027-01-17"
+    },
+    {
+      "number": 46,
+      "title": "Enable or disable quality rules",
+      "body": "As a data steward, I want to enable or disable rules per dataset so that I can tune checks without a code change.\n\n## Acceptance criteria\n\n- [ ] A steward can enable or disable an individual rule without deleting it\n- [ ] Disabled rules are not executed and are clearly marked as inactive\n- [ ] The change is recorded with the actor and timestamp\n\nParent epic: #14\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/46",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 14,
+      "sprint": 4,
+      "sprintStart": "2027-01-04",
+      "sprintEnd": "2027-01-17"
+    },
+    {
+      "number": 47,
+      "title": "Alert owners when a quality rule fails",
+      "body": "As a dataset owner, I want Slack and email alerts when a quality rule fails so that I can investigate before users are affected.\n\n## Acceptance criteria\n\n- [ ] When a rule fails, the dataset owner is alerted by email and, if configured, Slack\n- [ ] The alert names the dataset, the rule, the failure summary and a link to the result\n- [ ] Repeated failures of the same rule within a short window are grouped so owners are not flooded\n\nParent epic: #15\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/47",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 15,
+      "sprint": 5,
+      "sprintStart": "2027-01-18",
+      "sprintEnd": "2027-01-31"
+    },
+    {
+      "number": 48,
+      "title": "Configure quality alert recipients",
+      "body": "As a dataset owner, I want to choose who is notified and how so that the right people are reached without unnecessary noise.\n\n## Acceptance criteria\n\n- [ ] An owner can set email and Slack recipients for quality alerts on their dataset\n- [ ] Recipients can be added or removed, and a dataset can have more than one recipient\n- [ ] Alerts are only sent on the channels that have been configured\n\nParent epic: #15\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/48",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 15,
+      "sprint": 6,
+      "sprintStart": "2027-02-01",
+      "sprintEnd": "2027-02-14"
+    },
+    {
+      "number": 49,
+      "title": "Show a quality score on the dataset page",
+      "body": "As an analyst, I want to see a quality score on the dataset page so that I can judge whether to trust the data before I use it.\n\n## Acceptance criteria\n\n- [ ] The dataset page shows a quality score based on recent rule results\n- [ ] The score explains how it was calculated (for example rules passed versus failed in the last period)\n- [ ] If no rules have been run, the page states that a score is not yet available\n\nParent epic: #16\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/49",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 16,
+      "sprint": 6,
+      "sprintStart": "2027-02-01",
+      "sprintEnd": "2027-02-14"
+    },
+    {
+      "number": 50,
+      "title": "Cross-domain quality dashboard",
+      "body": "As a data lead, I want a cross-domain quality dashboard so that I can see which areas need attention.\n\n## Acceptance criteria\n\n- [ ] A dashboard lists datasets with their latest quality score, grouped or filterable by domain\n- [ ] Users can sort or filter to find failing or stale checks\n- [ ] Each row links through to the dataset page\n\nParent epic: #16\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/50",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 3,
+      "epic": 16,
+      "sprint": 10,
+      "sprintStart": "2027-03-29",
+      "sprintEnd": "2027-04-11"
+    },
+    {
+      "number": 51,
+      "title": "Assign owners and stewards to datasets",
+      "body": "As a data lead, I want every critical dataset to have a named owner and steward so that responsibilities are clear.\n\n## Acceptance criteria\n\n- [ ] A data lead can assign an owner and a steward to a dataset from the organisation directory\n- [ ] The dataset page and registry list show the current owner and steward\n- [ ] Critical datasets missing an owner or steward are identifiable in the registry\n\nParent epic: #17\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/51",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 4,
+      "epic": 17,
+      "sprint": 10,
+      "sprintStart": "2027-03-29",
+      "sprintEnd": "2027-04-11"
+    },
+    {
+      "number": 52,
+      "title": "Sync owners and stewards from the HR directory",
+      "body": "As a data steward, I want owner and steward details to stay in sync with the HR directory so that records stay current when people change roles or leave.\n\n## Acceptance criteria\n\n- [ ] Owner and steward names, contact details and status are refreshed from the HR directory on a schedule\n- [ ] If a recorded owner or steward has left, the dataset is flagged as needing a new assignment\n- [ ] Directory sync failures are logged and visible to the platform team\n\nParent epic: #17\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/52",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 4,
+      "epic": 17,
+      "sprint": 10,
+      "sprintStart": "2027-03-29",
+      "sprintEnd": "2027-04-11"
+    },
+    {
+      "number": 53,
+      "title": "Stewardship queue for incomplete datasets",
+      "body": "As a data steward, I want a queue of datasets missing descriptions, classifications or reviews so that I can work through gaps systematically.\n\n## Acceptance criteria\n\n- [ ] A steward sees a queue of datasets they are responsible for that are missing a description, classification or scheduled review\n- [ ] Each item states what is missing and links to the dataset\n- [ ] Completing the missing work removes the item from the queue\n\nParent epic: #18\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/53",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 4,
+      "epic": 18,
+      "sprint": 11,
+      "sprintStart": "2027-04-12",
+      "sprintEnd": "2027-04-25"
+    },
+    {
+      "number": 54,
+      "title": "Track overdue stewardship tasks",
+      "body": "As a data lead, I want to see overdue stewardship tasks so that I can follow up where ownership is slipping.\n\n## Acceptance criteria\n\n- [ ] Tasks past their review or completion date are marked overdue\n- [ ] A data lead can view overdue tasks across their domain, with steward and dataset\n- [ ] The view can be filtered by domain or steward\n\nParent epic: #18\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/54",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 4,
+      "epic": 18,
+      "sprint": 11,
+      "sprintStart": "2027-04-12",
+      "sprintEnd": "2027-04-25"
+    },
+    {
+      "number": 55,
+      "title": "Tag sensitive fields on a dataset",
+      "body": "As a data steward, I want to tag personal and sensitive fields on a dataset so that downstream users handle them correctly.\n\n## Acceptance criteria\n\n- [ ] A steward can tag fields as personal, sensitive or another agreed classification\n- [ ] Tagged fields are visible on the dataset schema and in sample previews (masked where required)\n- [ ] Tags can be changed or removed, and the change is recorded\n\nParent epic: #19\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/55",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 5,
+      "epic": 19,
+      "sprint": 12,
+      "sprintStart": "2027-04-26",
+      "sprintEnd": "2027-05-09"
+    },
+    {
+      "number": 56,
+      "title": "Suggest sensitive field tags from patterns",
+      "body": "As a data steward, I want suggested tags from pattern detection so that I can classify fields faster and more consistently.\n\n## Acceptance criteria\n\n- [ ] The system suggests classifications for fields that match known patterns (for example email, postcode, NHS number)\n- [ ] Suggestions are presented for a steward to accept or dismiss; they are not applied automatically\n- [ ] Accepted suggestions become field tags; dismissed suggestions are not shown again for that field unless the schema changes\n\nParent epic: #19\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/56",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 5,
+      "epic": 19,
+      "sprint": 12,
+      "sprintStart": "2027-04-26",
+      "sprintEnd": "2027-05-09"
+    },
+    {
+      "number": 57,
+      "title": "Apply retention periods to datasets",
+      "body": "As a data owner, I want to apply a retention period to a dataset so that we do not keep data longer than we should.\n\n## Acceptance criteria\n\n- [ ] An owner can set a retention period on a dataset (for example 12 or 24 months from last activity or a fixed end date)\n- [ ] The retention period is shown on the dataset page\n- [ ] A change to the retention period is recorded with the actor and reason\n\nParent epic: #20\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/57",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 5,
+      "epic": 20,
+      "sprint": 13,
+      "sprintStart": "2027-05-10",
+      "sprintEnd": "2027-05-23"
+    },
+    {
+      "number": 58,
+      "title": "Flag data overdue for deletion",
+      "body": "As a data steward, I want to be flagged when data is overdue for deletion so that we can act before we breach policy.\n\n## Acceptance criteria\n\n- [ ] Datasets past their retention date are flagged as overdue for deletion\n- [ ] The steward and owner are notified, with a link to review the dataset\n- [ ] The flag is cleared once deletion is confirmed or the retention period is legitimately extended\n\nParent epic: #20\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/58",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 2,
+      "feature": 5,
+      "epic": 20,
+      "sprint": 13,
+      "sprintStart": "2027-05-10",
+      "sprintEnd": "2027-05-23"
+    },
+    {
+      "number": 59,
+      "title": "Ask a question in plain English",
+      "body": "As an analyst, I want to ask a question in plain English against curated datasets so that I can get SQL without writing it from scratch.\n\n## Acceptance criteria\n\n- [ ] A user can type a natural-language question and receive generated SQL for a curated dataset\n- [ ] The assistant indicates which dataset or datasets it used\n- [ ] If the question cannot be interpreted, the user sees a clear message and a prompt to rephrase\n\nParent epic: #21\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/59",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 21,
+      "sprint": 7,
+      "sprintStart": "2027-02-15",
+      "sprintEnd": "2027-02-28"
+    },
+    {
+      "number": 60,
+      "title": "Review and edit generated SQL",
+      "body": "As an analyst, I want to see and edit the generated SQL before it runs so that I can correct or refine the query.\n\n## Acceptance criteria\n\n- [ ] Generated SQL is shown before execution and can be edited by the user\n- [ ] The edited SQL is what is run when the user confirms\n- [ ] The original generated SQL is retained for comparison\n\nParent epic: #21\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/60",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 21,
+      "sprint": 8,
+      "sprintStart": "2027-03-01",
+      "sprintEnd": "2027-03-14"
+    },
+    {
+      "number": 61,
+      "title": "Limit the assistant to curated datasets",
+      "body": "As a data engineer, I want the assistant limited to catalogue-curated datasets so that users cannot query unmanaged tables.\n\n## Acceptance criteria\n\n- [ ] The assistant can only generate queries against datasets marked as curated in the catalogue\n- [ ] A question that requires an unmanaged table is refused with an explanation\n- [ ] The allowed dataset list is taken from the catalogue, not hard-coded\n\nParent epic: #21\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/61",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 21,
+      "sprint": 9,
+      "sprintStart": "2027-03-15",
+      "sprintEnd": "2027-03-28"
+    },
+    {
+      "number": 62,
+      "title": "Enforce access permissions on generated queries",
+      "body": "As a security officer, I want generated queries to respect the user's existing access permissions so that the assistant cannot bypass access controls.\n\n## Acceptance criteria\n\n- [ ] A generated or edited query is checked against the user's dataset permissions before it runs\n- [ ] Queries that include datasets the user cannot access are blocked\n- [ ] The permission check uses the same source of truth as warehouse access\n\nParent epic: #22\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/62",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 22,
+      "sprint": 11,
+      "sprintStart": "2027-04-12",
+      "sprintEnd": "2027-04-25"
+    },
+    {
+      "number": 63,
+      "title": "Apply cost and row limits to generated queries",
+      "body": "As a platform engineer, I want cost and row limits on generated queries so that a bad prompt cannot run an expensive query.\n\n## Acceptance criteria\n\n- [ ] Queries are subject to a configurable row limit and estimated-cost ceiling\n- [ ] A query that would exceed a limit is not executed\n- [ ] Limits can be adjusted by a platform engineer without a code release\n\nParent epic: #22\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/63",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 22,
+      "sprint": 12,
+      "sprintStart": "2027-04-26",
+      "sprintEnd": "2027-05-09"
+    },
+    {
+      "number": 64,
+      "title": "Explain when a query is blocked by guardrails",
+      "body": "As an analyst, I want a clear error when a question is blocked by guardrails so that I understand why I cannot run it.\n\n## Acceptance criteria\n\n- [ ] When a query is blocked, the user is told whether the reason was permissions, cost, row limit or another guardrail\n- [ ] The message suggests a next step (for example request access, narrow the question)\n- [ ] The blocked attempt is logged for audit without exposing data the user cannot see\n\nParent epic: #22\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/64",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 22,
+      "sprint": 13,
+      "sprintStart": "2027-05-10",
+      "sprintEnd": "2027-05-23"
+    },
+    {
+      "number": 65,
+      "title": "Show SQL, sources and caveats with answers",
+      "body": "As an analyst, I want to see the SQL, datasets used and caveats alongside every answer so that I can trust and explain the result.\n\n## Acceptance criteria\n\n- [ ] Every answer shows the SQL that was run, the datasets used and any caveats (for example incomplete data or failed quality checks)\n- [ ] Dataset names link to the catalogue page\n- [ ] This explanation is available for both successful answers and answers based on partial results\n\nParent epic: #23\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/65",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 23,
+      "sprint": 14,
+      "sprintStart": "2027-05-24",
+      "sprintEnd": "2027-06-06"
+    },
+    {
+      "number": 66,
+      "title": "Chart numeric answers",
+      "body": "As a service team member, I want a chart of the answer when the question is numeric so that I can share the insight quickly.\n\n## Acceptance criteria\n\n- [ ] When the result is a numeric series or comparison, a simple chart is shown alongside the table\n- [ ] The user can download or copy the chart and the underlying data\n- [ ] If a chart is not appropriate, only the table is shown, with no broken visualisation\n\nParent epic: #23\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/66",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 6,
+      "epic": 23,
+      "sprint": 14,
+      "sprintStart": "2027-05-24",
+      "sprintEnd": "2027-06-06"
+    },
+    {
+      "number": 67,
+      "title": "Provide a gateway API with per-team keys",
+      "body": "As a platform engineer, I want a single gateway API with per-team keys so that teams use approved models through one route.\n\n## Acceptance criteria\n\n- [ ] Teams can be issued a gateway API key that authenticates requests to the single approved endpoint\n- [ ] Requests without a valid key are rejected\n- [ ] Keys can be rotated or revoked without changing the endpoint URL\n\nParent epic: #24\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/67",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 7,
+      "epic": 24,
+      "sprint": 15,
+      "sprintStart": "2027-06-07",
+      "sprintEnd": "2027-06-20"
+    },
+    {
+      "number": 68,
+      "title": "Route requests to the appropriate model",
+      "body": "As a platform engineer, I want to route requests to the right model by team or use case so that we can manage cost and capability.\n\n## Acceptance criteria\n\n- [ ] The gateway routes a request to a model based on team and use-case configuration\n- [ ] A platform engineer can change routing rules without a code release\n- [ ] Unsupported models or misconfigured routes return a clear error and are logged\n\nParent epic: #24\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/68",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 7,
+      "epic": 24,
+      "sprint": 15,
+      "sprintStart": "2027-06-07",
+      "sprintEnd": "2027-06-20"
+    },
+    {
+      "number": 69,
+      "title": "Dashboard of AI usage and spend",
+      "body": "As a data lead, I want a dashboard of usage and spend by team and model so that I can manage AI costs.\n\n## Acceptance criteria\n\n- [ ] A dashboard shows request volume and estimated spend, breakable by team and by model, for a chosen date range\n- [ ] Figures are based on gateway logs, not on informal estimates\n- [ ] Authorised leads can export the breakdown\n\nParent epic: #25\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/69",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 7,
+      "epic": 25,
+      "sprint": 16,
+      "sprintStart": "2027-06-21",
+      "sprintEnd": "2027-07-04"
+    },
+    {
+      "number": 70,
+      "title": "Spend alerts per team",
+      "body": "As a platform engineer, I want to set and monitor spend alerts per team so that unexpected usage is caught early.\n\n## Acceptance criteria\n\n- [ ] A platform engineer can set a spend threshold per team\n- [ ] When a team exceeds the threshold in the current period, the engineer and team contact are notified\n- [ ] Alerts can be acknowledged, and thresholds can be updated\n\nParent epic: #25\n",
+      "url": "https://github.com/GregFowler/Demo-Product-Map-Repo/issues/70",
+      "state": "open",
+      "labels": [
+        "story"
+      ],
+      "milestone": 3,
+      "feature": 7,
+      "epic": 25,
+      "sprint": 16,
+      "sprintStart": "2027-06-21",
+      "sprintEnd": "2027-07-04"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "github-product-roadmap-tool",
+  "private": true,
+  "type": "module",
+  "description": "Prototype product roadmap built from GitHub milestones, issues and project iterations.",
+  "scripts": {
+    "test": "node --test",
+    "snapshot": "node scripts/snapshot.js",
+    "start": "python3 -m http.server 8080"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
