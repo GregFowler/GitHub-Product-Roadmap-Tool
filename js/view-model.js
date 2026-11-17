@@ -1,5 +1,6 @@
 import { formatMonthKey } from "./dates.js";
 import { classifyItem, currentSprintNumber, earliestScheduledSprint } from "./status.js";
+import { scheduledSpan } from "./timeline.js";
 
 function byNumber(a, b) {
   return a.number - b.number;
@@ -68,19 +69,13 @@ function matchesQuery(parts, query) {
   return haystack.includes(query);
 }
 
-function sprintRange(stories) {
-  const numbers = stories.map((story) => story.sprint).filter((sprint) => Number.isInteger(sprint));
-  if (numbers.length === 0) return null;
-  return { earliest: Math.min(...numbers), latest: Math.max(...numbers) };
-}
-
 function prepare(item, stories, today, sprints) {
   const earliestSprint = earliestScheduledSprint(stories);
   return {
     item,
     stories,
     classification: classifyItem({ today, sprints, earliestSprint }),
-    sprintRange: sprintRange(stories),
+    span: scheduledSpan(stories, sprints),
   };
 }
 
@@ -171,6 +166,7 @@ export function buildViewModel(roadmap, { today, milestone = "", query = "" } = 
     currentSprint,
     beforeFirst: today < sprints[0].start,
     afterLast: today > sprints[sprints.length - 1].end,
+    milestones: [...milestoneEntries].sort(compareScheduled),
     milestoneColumns: columnise(milestoneEntries),
     epicColumns: columnise(epicEntries),
     monthGroups,

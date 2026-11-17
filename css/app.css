@@ -115,27 +115,256 @@
   max-width: none;
 }
 
-.roadmap-card .govuk-summary-list {
+.roadmap-card .govuk-summary-list,
+.app-timeline__disclosure .govuk-summary-list {
   display: block;
   margin-bottom: 10px;
 }
 
-.roadmap-card .govuk-summary-list__row {
+.roadmap-card .govuk-summary-list__row,
+.app-timeline__disclosure .govuk-summary-list__row {
   display: block;
   margin-bottom: 10px;
   border-bottom: 0;
 }
 
 .roadmap-card .govuk-summary-list__key,
-.roadmap-card .govuk-summary-list__value {
+.roadmap-card .govuk-summary-list__value,
+.app-timeline__disclosure .govuk-summary-list__key,
+.app-timeline__disclosure .govuk-summary-list__value {
   display: block;
   width: auto;
   padding: 0;
 }
 
-.roadmap-card .govuk-details__summary {
+.roadmap-card .govuk-details__summary,
+.app-timeline__disclosure .govuk-details__summary {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.app-timeline {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.app-timeline__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin: 0 0 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.app-timeline__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.app-timeline__key {
+  display: block;
+  width: 1.75rem;
+  height: 0.7rem;
+  flex: none;
+}
+
+.app-timeline__key--now {
+  background-color: #00703c;
+}
+
+.app-timeline__key--next {
+  background-color: #1d70b8;
+}
+
+.app-timeline__key--later {
+  background-color: #505a5f;
+}
+
+.app-timeline__key--today {
+  width: 2px;
+  height: 1rem;
+  margin-right: 0.7rem;
+  margin-left: 0.85rem;
+  background-color: #d4351c;
+}
+
+.app-timeline__scale-row,
+.app-timeline__item {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(11rem, 16rem) minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.app-timeline__scale {
+  grid-column: 2;
+  position: relative;
+  min-width: 0;
+}
+
+.app-timeline__years,
+.app-timeline__months,
+.app-timeline__quarters {
+  display: grid;
+  grid-template-columns: repeat(var(--months), minmax(0, 1fr));
+}
+
+.app-timeline__quarters {
+  display: none;
+}
+
+.app-timeline__tick {
+  min-width: 0;
+  box-sizing: border-box;
+  padding-right: 0.25rem;
+  overflow: hidden;
+  color: #505a5f;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.app-timeline__years .app-timeline__tick {
+  color: #0b0c0c;
+  font-weight: 700;
+}
+
+.app-timeline__months,
+.app-timeline__quarters {
+  padding-bottom: 2px;
+  border-bottom: 1px solid #b1b4b6;
+}
+
+.app-timeline__scale {
+  padding-bottom: 10px;
+}
+
+.app-timeline__today-flag {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 10px;
+  background-color: #d4351c;
+  pointer-events: none;
+}
+
+.app-timeline__label,
+.app-timeline__track,
+.app-timeline__disclosure {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.app-timeline__label {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.app-timeline__title {
+  margin-bottom: 0;
+}
+
+.app-timeline__track {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.app-timeline__disclosure {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.app-timeline__lane {
+  position: relative;
+  height: 1.75rem;
+  background-color: #f3f2f1;
+}
+
+.app-timeline__grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--months), minmax(0, 1fr));
+  pointer-events: none;
+}
+
+.app-timeline__grid > span {
+  border-left: 1px solid #d8dadb;
+}
+
+.app-timeline__grid > span:first-child {
+  border-left-width: 0;
+}
+
+.app-timeline__bar {
+  position: absolute;
+  z-index: 1;
+  top: 0.4rem;
+  height: 0.95rem;
+}
+
+.app-timeline__bar--now {
+  background-color: #00703c;
+}
+
+.app-timeline__bar--next {
+  background-color: #1d70b8;
+}
+
+.app-timeline__bar--later {
+  background-color: #505a5f;
+}
+
+.app-timeline__today {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #d4351c;
+  pointer-events: none;
+}
+
+.app-timeline__dates {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 4px 0 0;
+  padding-left: var(--from, 0);
+  overflow-wrap: break-word;
+}
+
+.app-timeline__dates--end {
+  padding-left: 0;
+  padding-right: calc(100% - var(--from, 0%));
+  text-align: right;
+}
+
+.app-timeline__unscheduled {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0.15rem 0.15rem 0;
+  color: #505a5f;
+  line-height: 1.45rem;
+}
+
+.app-timeline__item + .app-timeline__item {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f2f1;
+}
+
+.app-timeline__disclosure .govuk-details {
+  margin-bottom: 5px;
 }
 
 .app-months {
@@ -324,9 +553,51 @@
   }
 
   .roadmap-card .govuk-details__summary,
-  .app-month > .govuk-details__summary {
+  .app-month > .govuk-details__summary,
+  .app-timeline__disclosure .govuk-details__summary {
     min-height: 44px;
     box-sizing: border-box;
+  }
+
+  .app-timeline__scale-row,
+  .app-timeline__item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-timeline__scale,
+  .app-timeline__label,
+  .app-timeline__track,
+  .app-timeline__disclosure {
+    grid-column: 1;
+  }
+
+  .app-timeline__label {
+    grid-row: 1;
+  }
+
+  .app-timeline__track {
+    grid-row: 2;
+  }
+
+  .app-timeline__disclosure {
+    grid-row: 3;
+  }
+
+  .app-timeline__title {
+    margin-bottom: 8px;
+  }
+
+  .app-timeline__years,
+  .app-timeline__months {
+    display: none;
+  }
+
+  .app-timeline__quarters {
+    display: grid;
+  }
+
+  .app-timeline__grid > span:not(.is-quarter) {
+    border-left-color: transparent;
   }
 }
 
@@ -334,7 +605,10 @@
   .app-column,
   .app-month,
   .roadmap-card,
-  .app-stories-table tr {
+  .app-stories-table tr,
+  .app-timeline__lane,
+  .app-timeline__bar,
+  .app-timeline__key {
     border: 1px solid CanvasText;
   }
 
@@ -344,7 +618,16 @@
   .roadmap-card,
   .app-stories-table,
   .app-stories-table th,
-  .app-stories-table td {
+  .app-stories-table td,
+  .app-timeline__lane,
+  .app-timeline__bar,
+  .app-timeline__key {
     background: Canvas;
+  }
+
+  .app-timeline__today,
+  .app-timeline__today-flag,
+  .app-timeline__key--today {
+    background: CanvasText;
   }
 }

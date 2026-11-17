@@ -1,5 +1,6 @@
-import { formatDateRange, formatLongDate } from "./dates.js";
+import { formatDateRange, formatLongDate, formatShortDateRange } from "./dates.js";
 import { escapeHtml, plainExcerpt, renderMarkdown } from "./markdown.js";
+import { barPlacement, cssPercent, timelineScale } from "./timeline.js";
 
 const COLUMNS = [
   { id: "now", title: "Now", hint: "Current sprint, the next sprint, or already started" },
@@ -138,38 +139,116 @@ function details(label, title, body) {
   return `<details class="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">${escapeHtml(label)}<span class="govuk-visually-hidden"> for ${escapeHtml(title)}</span></span></summary><div class="govuk-details__text">${body}</div></details>`;
 }
 
-function milestoneCard(entry, model, issueBaseUrl) {
+function milestoneDetail(entry, model, issueBaseUrl) {
   const milestone = entry.item;
   const index = model.index;
-  const range = sprintRangeLabel(entry.stories);
   const due = milestone.dueOn ? formatLongDate(milestone.dueOn) : "No due date";
   const scope = [
     plural(index.featuresByMilestone.get(milestone.number)?.length || 0, "feature"),
     plural(index.epicsByMilestone.get(milestone.number)?.length || 0, "epic"),
     plural(entry.stories.length, "story"),
   ].join(", ");
-  const excerpt = plainExcerpt(milestone.description);
   const body = `
-    <h4 class="govuk-heading-s">Description</h4>
+    ${summaryList([
+      ["Due", escapeHtml(due)],
+      ["Earliest sprint", escapeHtml(entry.classification.earliestSprint ? `Sprint ${entry.classification.earliestSprint}` : "Unscheduled")],
+      ["Scope", escapeHtml(scope)],
+    ])}
+    <h3 class="govuk-heading-s">Description</h3>
     ${descriptionHtml(milestone.description, issueBaseUrl)}
-    <h4 class="govuk-heading-s">Features, epics and stories</h4>
+    <h3 class="govuk-heading-s">Features, epics and stories</h3>
     ${renderMilestoneChildren(milestone, index)}
   `;
-  return `<article class="govuk-summary-card roadmap-card">
-    <div class="govuk-summary-card__title-wrapper">
-      <h3 class="govuk-summary-card__title">${githubTitleLink(milestone.url, milestone.title, "roadmap-card__title-link")}</h3>
+  return details("Show description and child items", milestone.title, body);
+}
+
+function scaleTicks(items) {
+  return items.map((item) => {
+    const span = item.span > 1 ? ` style="grid-column: span ${item.span}"` : "";
+    return `<span class="app-timeline__tick"${span}>${escapeHtml(item.label)}</span>`;
+  }).join("");
+}
+
+function laneGrid(months) {
+  const cells = months.map((month) => `<span${month.quarterStart ? ' class="is-quarter"' : ""}></span>`).join("");
+  return `<div class="app-timeline__grid" aria-hidden="true">${cells}</div>`;
+}
+
+function todayMarker(fraction, { flag = false, label = "" } = {}) {
+  const left = `clamp(0px, calc(${cssPercent(fraction)} - 1px), calc(100% - 2px))`;
+  if (flag) {
+    return `<div class="app-timeline__today-flag" style="left: ${left}"><span class="govuk-visually-hidden">${escapeHtml(label)}</span></div>`;
+  }
+  return `<div class="app-timeline__today" style="left: ${left}" aria-hidden="true"></div>`;
+}
+
+function timelineScaleHtml(scale) {
+  const months = scale.months.length;
+  return `<div class="app-timeline__scale-row">
+    <div class="app-timeline__scale" style="--months: ${months}">
+      <div class="app-timeline__years">${scaleTicks(scale.years)}</div>
+      <div class="app-timeline__months">${scaleTicks(scale.months)}</div>
+      <div class="app-timeline__quarters">${scaleTicks(scale.quarters)}</div>
+      ${todayMarker(scale.todayFraction, { flag: true, label: `Today, ${formatLongDate(scale.today)}` })}
     </div>
-    <div class="govuk-summary-card__content">
-      <p class="roadmap-card__tags">${statusTag(entry.classification.status)} ${stateTag(milestone.state)} ${tag(range.text, range.modifier)}</p>
-      ${excerpt ? `<p class="govuk-body">${escapeHtml(excerpt)}</p>` : ""}
-      ${summaryList([
-        ["Due", escapeHtml(due)],
-        ["Earliest sprint", escapeHtml(entry.classification.earliestSprint ? `Sprint ${entry.classification.earliestSprint}` : "Unscheduled")],
-        ["Scope", escapeHtml(scope)],
-      ])}
-      ${details("Show description and child items", milestone.title, body)}
+  </div>`;
+}
+
+function timelineTrack(entry, scale) {
+  const marker = todayMarker(scale.todayFraction);
+  const grid = laneGrid(scale.months);
+  if (!entry.span) {
+    return `<div class="app-timeline__track">
+      <div class="app-timeline__lane">${grid}${marker}<p class="app-timeline__unscheduled">Not scheduled</p></div>
+    </div>`;
+  }
+  const placement = barPlacement(entry.span.start, entry.span.end, scale.months);
+  const status = STATUS_TEXT[entry.classification.status] || "Later";
+  const modifier = entry.classification.status === "now" || entry.classification.status === "next"
+    ? entry.classification.status
+    : "later";
+  const visible = `${status}, ${formatShortDateRange(entry.span.start, entry.span.end)}`;
+  const alternative = `${status}, ${formatDateRange(entry.span.start, entry.span.end)}`;
+  const from = placement.align === "end"
+    ? cssPercent(placement.left + placement.width)
+    : cssPercent(placement.left);
+  const align = placement.align === "end" ? " app-timeline__dates--end" : "";
+  return `<div class="app-timeline__track">
+    <div class="app-timeline__lane">
+      ${grid}
+      ${marker}
+      <div class="app-timeline__bar app-timeline__bar--${modifier}" role="img" aria-label="${escapeHtml(alternative)}" style="left: ${cssPercent(placement.left)}; width: ${cssPercent(placement.width)};"></div>
     </div>
+    <p class="govuk-body-s app-timeline__dates${align}" style="--from: ${from}" aria-hidden="true">${escapeHtml(visible)}</p>
+  </div>`;
+}
+
+function timelineItem(entry, model, scale, issueBaseUrl) {
+  const milestone = entry.item;
+  const closed = stateTag(milestone.state);
+  return `<article class="app-timeline__item">
+    <div class="app-timeline__label">
+      <h2 class="govuk-heading-s app-timeline__title">${githubTitleLink(milestone.url, milestone.title)}</h2>
+      ${closed ? `<p class="app-timeline__tags">${closed}</p>` : ""}
+    </div>
+    ${timelineTrack(entry, scale)}
+    <div class="app-timeline__disclosure">${milestoneDetail(entry, model, issueBaseUrl)}</div>
   </article>`;
+}
+
+function renderTimeline(model, roadmap) {
+  const entries = model.milestones || [];
+  if (entries.length === 0) return `<p class="govuk-body">Nothing matches these filters.</p>`;
+  const issueBaseUrl = `${roadmap.source.repoUrl}/issues`;
+  const scale = timelineScale(entries.map((entry) => entry.span), model.today);
+  const legend = `<ul class="app-timeline__legend">
+    <li><span class="app-timeline__key app-timeline__key--now" aria-hidden="true"></span> Now</li>
+    <li><span class="app-timeline__key app-timeline__key--next" aria-hidden="true"></span> Next</li>
+    <li><span class="app-timeline__key app-timeline__key--later" aria-hidden="true"></span> Later</li>
+    <li><span class="app-timeline__key app-timeline__key--today" aria-hidden="true"></span> Today</li>
+  </ul>`;
+  const rows = entries.map((entry) => timelineItem(entry, model, scale, issueBaseUrl)).join("");
+  return `<div class="app-timeline" style="--months: ${scale.months.length}">${legend}${timelineScaleHtml(scale)}<div class="app-timeline__rows">${rows}</div></div>`;
 }
 
 function epicCard(entry, model, issueBaseUrl) {
@@ -343,7 +422,7 @@ export function viewCopy(view, counts) {
   }
   return {
     heading: "Milestones",
-    intro: `Milestones are the outcomes. Each one is placed from the earliest sprint of its stories. ${plural(counts.milestones, "milestone")}.`,
+    intro: `Milestones are the outcomes. Each bar runs from the start of the earliest story sprint to the end of the latest. ${plural(counts.milestones, "milestone")}.`,
   };
 }
 
@@ -351,17 +430,27 @@ export function currentSprintText(sprint) {
   return `Current sprint is ${sprint.title} (${formatDateRange(sprint.start, sprint.end)})`;
 }
 
-export function renderAsOf(model, { dateError = "" } = {}) {
-  const sprint = model.currentSprint;
+export function renderAsOf(model, { dateError = "", includeSprint = true } = {}) {
   const error = dateError
     ? `<p class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> ${escapeHtml(dateError)}</p>`
     : "";
+  if (!includeSprint) return error ? `<div class="govuk-inset-text">${error}</div>` : "";
+  const sprint = model.currentSprint;
   return `<div class="govuk-inset-text"><p class="govuk-body">Current sprint is <strong>${escapeHtml(sprint.title)}</strong> (${escapeHtml(formatDateRange(sprint.start, sprint.end))}).</p>${error}</div>`;
+}
+
+export function renderViewStatus(model, view, options = {}) {
+  return renderAsOf(model, { ...options, includeSprint: view !== "milestones" });
+}
+
+export function announceView(view, heading, sprint) {
+  if (view === "milestones") return `${heading}.`;
+  return `${heading}. ${currentSprintText(sprint)}.`;
 }
 
 export function renderResults(model, view, roadmap) {
   const issueBaseUrl = `${roadmap.source.repoUrl}/issues`;
   if (view === "stories") return renderStories(model, roadmap);
   if (view === "epics") return renderBoard(model.epicColumns, (entry) => epicCard(entry, model, issueBaseUrl));
-  return renderBoard(model.milestoneColumns, (entry) => milestoneCard(entry, model, issueBaseUrl));
+  return renderTimeline(model, roadmap);
 }

@@ -71,6 +71,42 @@ export function formatDateRange(startIso, endIso) {
   return `${startText} to ${longDate.format(end)}`;
 }
 
+const shortDate = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+const shortDayMonth = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  timeZone: "UTC",
+});
+
+const monthShort = new Intl.DateTimeFormat("en-GB", {
+  month: "short",
+  timeZone: "UTC",
+});
+
+export function formatShortDate(iso) {
+  return shortDate.format(parseISODate(iso));
+}
+
+/** Inclusive range, with a short month. A repeated year is written once, at the end. */
+export function formatShortDateRange(startIso, endIso) {
+  const start = parseISODate(startIso);
+  const end = parseISODate(endIso);
+  const startText = start.getUTCFullYear() === end.getUTCFullYear()
+    ? shortDayMonth.format(start)
+    : shortDate.format(start);
+  return `${startText} to ${shortDate.format(end)}`;
+}
+
+export function formatMonthShort(year, month) {
+  return monthShort.format(new Date(Date.UTC(year, month - 1, 1)));
+}
+
 export function formatMonthKey(yearMonth) {
   const match = /^(\d{4})-(\d{2})$/.exec(yearMonth);
   if (!match) throw new Error(`Invalid month: ${yearMonth}`);
