@@ -1,4 +1,4 @@
-import { formatLongDate } from "./dates.js";
+import { formatDateRange, formatLongDate } from "./dates.js";
 import { escapeHtml, plainExcerpt, renderMarkdown } from "./markdown.js";
 
 const COLUMNS = [
@@ -96,7 +96,7 @@ function storyItems(stories) {
       const label = story.sprint ? `Sprint ${story.sprint}` : "Unscheduled";
       const modifier = story.sprint ? "" : "orange";
       const dates = story.sprintStart
-        ? ` <span class="govuk-body-s">(${escapeHtml(formatLongDate(story.sprintStart))} to ${escapeHtml(formatLongDate(story.sprintEnd))})</span>`
+        ? ` <span class="govuk-body-s">(${escapeHtml(formatDateRange(story.sprintStart, story.sprintEnd))})</span>`
         : "";
       return `<li>${issueLink(story.url, story.title)} ${tag(label, modifier)}${dates}</li>`;
     })
@@ -216,57 +216,76 @@ function renderBoard(columns, cardRenderer) {
   }).join("")}</div>`;
 }
 
-function renderStory(story, issueBaseUrl) {
-  const label = story.sprint ? `Sprint ${story.sprint}` : "Unscheduled";
-  const modifier = story.sprint ? "" : "orange";
-  const when = story.sprintStart
-    ? `${formatLongDate(story.sprintStart)} to ${formatLongDate(story.sprintEnd)}`
-    : "No sprint date";
-  const body = descriptionHtml(story.body, issueBaseUrl);
-  return `<article class="story-card">
-    <h4 class="story-card__title">${githubTitleLink(story.url, story.title)}</h4>
-    <p class="roadmap-card__tags">${tag(label, modifier)} ${stateTag(story.state)}</p>
-    <p class="govuk-body-s">${escapeHtml(when)}</p>
-    ${details("Show description", story.title, body)}
-  </article>`;
-}
-
 function sprintLines(numbers, sprints) {
   return numbers
     .filter((number) => Number.isInteger(number))
     .map((number) => {
       const sprint = sprints.find((item) => item.number === number);
       if (!sprint) return escapeHtml(`Sprint ${number}`);
-      return escapeHtml(`Sprint ${number} (${formatLongDate(sprint.start)} to ${formatLongDate(sprint.end)})`);
+      return escapeHtml(`Sprint ${number} (${formatDateRange(sprint.start, sprint.end)})`);
     })
     .join("<br>");
+}
+
+function compareStories(a, b) {
+  const sprintA = a.sprint ?? 999;
+  const sprintB = b.sprint ?? 999;
+  if (sprintA !== sprintB) return sprintA - sprintB;
+  const epicA = a.epic ?? 0;
+  const epicB = b.epic ?? 0;
+  if (epicA !== epicB) return epicA - epicB;
+  return a.number - b.number;
+}
+
+function linkedName(item) {
+  return item ? issueLink(item.url, item.title) : "Not linked";
+}
+
+function issueStateTag(state) {
+  return state === "closed" ? tag("Closed", "grey") : tag("Open");
+}
+
+function sprintCell(story) {
+  if (!story.sprint) return tag("Unscheduled", "orange");
+  const dates = story.sprintStart && story.sprintEnd
+    ? `<span class="app-sprint__dates">${escapeHtml(formatDateRange(story.sprintStart, story.sprintEnd)).replace(/ (\d{4})/g, "\u00a0$1")}</span>`
+    : "";
+  return `<span class="app-sprint">${tag(`Sprint ${story.sprint}`)}${dates}</span>`;
+}
+
+function storyRow(story, index) {
+  const epic = index.epics.get(story.epic) || null;
+  const milestone = index.milestones.get(story.milestone) || null;
+  return `<tr class="govuk-table__row" role="row">
+    <th scope="row" role="rowheader" class="govuk-table__header app-stories-table__story" data-label="Story">${issueLink(story.url, story.title)}</th>
+    <td role="cell" class="govuk-table__cell app-stories-table__epic" data-label="Epic">${linkedName(epic)}</td>
+    <td role="cell" class="govuk-table__cell app-stories-table__milestone" data-label="Milestone">${linkedName(milestone)}</td>
+    <td role="cell" class="govuk-table__cell app-stories-table__sprint" data-label="Sprint">${sprintCell(story)}</td>
+    <td role="cell" class="govuk-table__cell app-stories-table__status" data-label="Status">${issueStateTag(story.state)}</td>
+  </tr>`;
+}
+
+function storyTable(stories, index, caption) {
+  const rows = stories.slice().sort(compareStories).map((story) => storyRow(story, index)).join("");
+  return `<table class="govuk-table app-stories-table" role="table">
+    <caption class="govuk-table__caption govuk-visually-hidden">${escapeHtml(caption)}</caption>
+    <thead class="govuk-table__head" role="rowgroup">
+      <tr class="govuk-table__row" role="row">
+        <th scope="col" role="columnheader" class="govuk-table__header app-stories-table__story">Story</th>
+        <th scope="col" role="columnheader" class="govuk-table__header app-stories-table__epic">Epic</th>
+        <th scope="col" role="columnheader" class="govuk-table__header app-stories-table__milestone">Milestone</th>
+        <th scope="col" role="columnheader" class="govuk-table__header app-stories-table__sprint">Sprint</th>
+        <th scope="col" role="columnheader" class="govuk-table__header app-stories-table__status">Status</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body" role="rowgroup">${rows}</tbody>
+  </table>`;
 }
 
 function monthStartsOpen(month, model) {
   if (month.key && String(model.today).slice(0, 7) === month.key) return true;
   const current = model.currentSprint?.number;
   return Number.isInteger(current) && month.sprintNumbers.includes(current);
-}
-
-function renderEpicGroup(group, issueBaseUrl) {
-  const feature = group.feature ? escapeHtml(group.feature.title) : "No feature";
-  const title = group.epic
-    ? githubTitleLink(group.epic.url, group.epic.title, "epic-group__title-link")
-    : "No epic";
-  return `<section class="epic-group">
-    <h3 class="govuk-heading-s">${title}</h3>
-    <p class="govuk-body-s">${feature}</p>
-    ${group.stories.map((story) => renderStory(story, issueBaseUrl)).join("")}
-  </section>`;
-}
-
-function epicGroupsFromStories(stories, index) {
-  const epicIds = [...new Set(stories.map((story) => story.epic ?? 0))].sort((a, b) => a - b);
-  return epicIds.map((epicId) => ({
-    epic: index.epics.get(epicId) || null,
-    feature: index.features.get(index.epics.get(epicId)?.feature) || null,
-    stories: stories.filter((story) => (story.epic ?? 0) === epicId).sort((a, b) => a.number - b.number),
-  }));
 }
 
 function monthSection({ id, heading, summaryHtml, open, modifier = "", body }) {
@@ -278,14 +297,11 @@ function monthSection({ id, heading, summaryHtml, open, modifier = "", body }) {
         <p class="govuk-body-s app-month__sprints">${summaryHtml}</p>
       </span>
     </summary>
-    <div class="govuk-details__text">
-      <div class="app-epic-grid">${body}</div>
-    </div>
+    <div class="govuk-details__text">${body}</div>
   </details>`;
 }
 
 function renderStories(model, roadmap) {
-  const issueBaseUrl = `${roadmap.source.repoUrl}/issues`;
   const sprints = roadmap.sprints || [];
   if (model.monthGroups.length === 0 && model.unscheduledStories.length === 0) {
     return `<p class="govuk-body">Nothing matches these filters.</p>`;
@@ -296,7 +312,7 @@ function renderStories(model, roadmap) {
       heading: month.label,
       summaryHtml: sprintLines(month.sprintNumbers, sprints),
       open: monthStartsOpen(month, model),
-      body: month.epics.map((group) => renderEpicGroup(group, issueBaseUrl)).join(""),
+      body: storyTable(month.epics.flatMap((group) => group.stories), model.index, `Stories in ${month.label}`),
     }))
     .join("");
   const unscheduled = model.unscheduledStories.length
@@ -306,9 +322,7 @@ function renderStories(model, roadmap) {
       summaryHtml: "These stories have no sprint.",
       open: false,
       modifier: "app-month--unscheduled",
-      body: epicGroupsFromStories(model.unscheduledStories, model.index)
-        .map((group) => renderEpicGroup(group, issueBaseUrl))
-        .join(""),
+      body: storyTable(model.unscheduledStories, model.index, "Stories with no sprint"),
     })
     : "";
   return `<div class="app-months">${months}${unscheduled}</div>`;
@@ -324,7 +338,7 @@ export function viewCopy(view, counts) {
   if (view === "stories") {
     return {
       heading: "Stories",
-      intro: `Stories are grouped by the month their sprint starts, then by epic. A sprint that crosses two months is shown in the month it starts. The current month, and any month that includes the current sprint, starts open. ${plural(counts.stories, "story")}.`,
+      intro: `Stories are listed by the month their sprint starts. A sprint that crosses two months is shown in the month it starts. The current month, and any month that includes the current sprint, starts open. ${plural(counts.stories, "story")}.`,
     };
   }
   return {
@@ -333,19 +347,16 @@ export function viewCopy(view, counts) {
   };
 }
 
-export function renderAsOf(model, { override = false, dateError = "" } = {}) {
+export function currentSprintText(sprint) {
+  return `Current sprint is ${sprint.title} (${formatDateRange(sprint.start, sprint.end)})`;
+}
+
+export function renderAsOf(model, { dateError = "" } = {}) {
   const sprint = model.currentSprint;
-  let extra = "";
-  if (model.beforeFirst) {
-    extra = ` ${escapeHtml(sprint.title)} has not started yet, so it is treated as the current sprint.`;
-  } else if (model.afterLast) {
-    extra = ` This date is after the last sprint, so ${escapeHtml(sprint.title)} is treated as the current sprint.`;
-  }
-  const demo = override ? " Showing a demo date." : "";
   const error = dateError
     ? `<p class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> ${escapeHtml(dateError)}</p>`
     : "";
-  return `<div class="govuk-inset-text"><p class="govuk-body">As of <strong>${escapeHtml(formatLongDate(model.today))}</strong>. Current sprint is <strong>${escapeHtml(sprint.title)}</strong> (${escapeHtml(formatLongDate(sprint.start))} to ${escapeHtml(formatLongDate(sprint.end))}).${extra}${demo}</p>${error}</div>`;
+  return `<div class="govuk-inset-text"><p class="govuk-body">Current sprint is <strong>${escapeHtml(sprint.title)}</strong> (${escapeHtml(formatDateRange(sprint.start, sprint.end))}).</p>${error}</div>`;
 }
 
 export function renderResults(model, view, roadmap) {
@@ -353,17 +364,4 @@ export function renderResults(model, view, roadmap) {
   if (view === "stories") return renderStories(model, roadmap);
   if (view === "epics") return renderBoard(model.epicColumns, (entry) => epicCard(entry, model, issueBaseUrl));
   return renderBoard(model.milestoneColumns, (entry) => milestoneCard(entry, model, issueBaseUrl));
-}
-
-export function snapshotMeta(roadmap, mode) {
-  const when = new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "long",
-    timeStyle: "short",
-    timeZone: "UTC",
-  }).format(new Date(roadmap.generatedAt));
-  const assignments = roadmap.source.sprintAssignments === "github_project"
-    ? "GitHub project iterations"
-    : "the committed sprint plan";
-  const showing = mode === "live" ? "Showing live data from GitHub." : "Showing the committed snapshot.";
-  return `${showing} Generated ${when} UTC. Sprint assignments come from ${assignments}. Repository: ${roadmap.source.repoUrl}. Project: ${roadmap.source.projectUrl}.`;
 }
