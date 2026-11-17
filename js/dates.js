@@ -51,8 +51,24 @@ const monthYear = new Intl.DateTimeFormat("en-GB", {
   timeZone: "UTC",
 });
 
+const dayMonth = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "long",
+  timeZone: "UTC",
+});
+
 export function formatLongDate(iso) {
   return longDate.format(parseISODate(iso));
+}
+
+/** Inclusive range. A repeated year is written once, at the end. */
+export function formatDateRange(startIso, endIso) {
+  const start = parseISODate(startIso);
+  const end = parseISODate(endIso);
+  const startText = start.getUTCFullYear() === end.getUTCFullYear()
+    ? dayMonth.format(start)
+    : longDate.format(start);
+  return `${startText} to ${longDate.format(end)}`;
 }
 
 export function formatMonthKey(yearMonth) {

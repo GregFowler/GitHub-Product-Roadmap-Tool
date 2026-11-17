@@ -2,11 +2,12 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { roadmapConfig, roadmapServiceName } from "../js/config.js";
-import { resolveToday } from "../js/query.js";
+import { formatDateRange } from "../js/dates.js";
+import { resolveToday, showsMilestoneFilter } from "../js/query.js";
 import { buildSprints } from "../js/sprints.js";
 import { classifyItem, currentSprintNumber } from "../js/status.js";
 import { buildViewModel } from "../js/view-model.js";
-import { renderResults, viewCopy } from "../js/render.js";
+import { currentSprintText, renderAsOf, renderResults, viewCopy } from "../js/render.js";
 
 const sprints = buildSprints(roadmapConfig.sprints);
 
@@ -134,10 +135,19 @@ test("rendered milestone detail escapes markdown and lists child sprints", () =>
   assert.equal(stories.includes("Scroll sideways"), false);
   const november = monthSection(stories, "November 2026");
   assert.match(november, /<details class="govuk-details app-month" open>/);
-  assert.match(november, /Sprint 1 \(23 November 2026 to 6 December 2026\)/);
+  assert.match(november, /Sprint 1 \(23 November to 6 December 2026\)/);
+  assert.match(november, /class="govuk-table app-stories-table"/);
+  assert.match(november, /data-label="Story"/);
+  assert.match(november, /data-label="Epic"/);
+  assert.match(november, /data-label="Milestone"/);
+  assert.match(november, /data-label="Sprint"/);
+  assert.match(november, /data-label="Status"/);
   assert.match(november, /href="https:\/\/example\/8"/);
   assert.match(november, /href="https:\/\/example\/26"/);
   assert.match(november, /<strong class="govuk-tag">Sprint 1<\/strong>/);
+  assert.match(november, /<strong class="govuk-tag">Open<\/strong>/);
+  assert.equal(november.includes("story-card"), false);
+  assert.equal(november.includes("Show description"), false);
   const january = monthSection(stories, "January 2027");
   assert.match(january, /<details class="govuk-details app-month">/);
   assert.doesNotMatch(january, / open>/);
@@ -158,24 +168,62 @@ test("story months open for the current month and for current-sprint work", () =
 
   const januaryToday = renderResults(buildViewModel(roadmap, { today: "2027-01-18" }), "stories", roadmap);
   assert.match(monthSection(januaryToday, "January 2027"), / open>/);
-  assert.match(monthSection(januaryToday, "January 2027"), /Sprint 4 \(4 January 2027 to 17 January 2027\)/);
+  assert.match(monthSection(januaryToday, "January 2027"), /Sprint 4 \(4 January to 17 January 2027\)/);
   assert.doesNotMatch(monthSection(januaryToday, "November 2026"), / open>/);
 });
 
-test("the service name follows the configured repository", async () => {
-  assert.equal(roadmapServiceName(), "Product roadmap for Demo-Product-Map-Repo");
-  assert.equal(roadmapServiceName({ repo: "Example-Repo" }), "Product roadmap for Example-Repo");
+test("the service name is the configured repository", async () => {
+  assert.equal(roadmapServiceName(), "Demo-Product-Map-Repo");
+  assert.equal(roadmapServiceName({ repo: "Example-Repo" }), "Example-Repo");
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
   const name = roadmapServiceName();
   assert.match(html, new RegExp(`<title>${name}</title>`));
   assert.match(html, new RegExp(`id="service-name"[^>]*>${name}</a>`));
-  assert.match(html, new RegExp(`id="service-caption">${name}</span>`));
+  assert.match(html, /id="page-caption">Product roadmap<\/span>/);
+  assert.equal(html.includes("Product roadmap for"), false);
+  assert.equal(html.includes("govuk-phase-banner"), false);
+  assert.equal(html.includes("github-token"), false);
+  assert.equal(html.includes("snapshot-meta"), false);
+  assert.equal(html.includes("Load live data"), false);
   assert.equal(html.includes('id="search"'), false);
   assert.equal(html.includes("View as of"), false);
   assert.match(html, /id="milestone-filter"/);
   const css = await readFile(new URL("../css/app.css", import.meta.url), "utf8");
   assert.match(css, /max-width:\s*1200px/);
+  assert.match(css, /#ebf4ef/);
+  assert.match(css, /#edf4f9/);
+  assert.match(css, /#f3f2f1/);
   assert.equal(css.includes("overflow-x"), false);
+  assert.equal(css.includes("story-card"), false);
+});
+
+test("the milestone filter is hidden on the milestones view", () => {
+  assert.equal(showsMilestoneFilter("milestones"), false);
+  assert.equal(showsMilestoneFilter("epics"), true);
+  assert.equal(showsMilestoneFilter("stories"), true);
+  assert.equal(showsMilestoneFilter("other"), false);
+});
+
+test("the current sprint line is the sprint and its dates", () => {
+  assert.equal(formatDateRange("2026-11-23", "2026-12-06"), "23 November to 6 December 2026");
+  assert.equal(formatDateRange("2026-12-21", "2027-01-03"), "21 December 2026 to 3 January 2027");
+  const model = buildViewModel(roadmap, { today: "2026-11-17" });
+  assert.equal(currentSprintText(model.currentSprint), "Current sprint is Sprint 1 (23 November to 6 December 2026)");
+  const html = renderAsOf(model, { dateError: "" });
+  assert.match(html, /Current sprint is <strong>Sprint 1<\/strong> \(23 November to 6 December 2026\)\./);
+  assert.equal(html.includes("As of"), false);
+  assert.equal(html.includes("demo"), false);
+  assert.equal(html.includes("has not started"), false);
+  const invalid = renderAsOf(model, { dateError: "The date in the address is not valid. Showing today." });
+  assert.match(invalid, /not valid/);
+});
+
+test("a closed story shows a closed status in the table", () => {
+  const closed = structuredClone(roadmap);
+  closed.stories[0].state = "closed";
+  const html = renderResults(buildViewModel(closed, { today: "2026-11-17" }), "stories", closed);
+  const november = monthSection(html, "November 2026");
+  assert.match(november, /data-label="Status">[^<]*<strong class="govuk-tag govuk-tag--grey">Closed<\/strong>/);
 });
 
 test("count labels use story, epic and milestone plurals", () => {

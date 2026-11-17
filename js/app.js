@@ -1,37 +1,16 @@
 import { roadmapConfig, roadmapServiceName } from "./config.js";
-import { loadLive, loadSnapshot } from "./data.js";
+import { loadSnapshot } from "./data.js";
 import { escapeHtml } from "./markdown.js";
-import { formatLongDate } from "./dates.js";
-import { parseView, resolveToday } from "./query.js";
-import { renderAsOf, renderResults, snapshotMeta, viewCopy } from "./render.js";
+import { parseView, resolveToday, showsMilestoneFilter } from "./query.js";
+import { currentSprintText, renderAsOf, renderResults, viewCopy } from "./render.js";
 import { buildViewModel } from "./view-model.js";
-
-const TOKEN_KEY = "roadmapToken";
 
 const state = {
   roadmap: null,
   view: "milestones",
   date: "",
   milestone: "",
-  mode: "snapshot",
 };
-
-function readToken() {
-  try {
-    return sessionStorage.getItem(TOKEN_KEY) || "";
-  } catch {
-    return "";
-  }
-}
-
-function writeToken(token) {
-  try {
-    if (token) sessionStorage.setItem(TOKEN_KEY, token);
-    else sessionStorage.removeItem(TOKEN_KEY);
-  } catch {
-    /* Session storage can be blocked. The typed token is still used for this load. */
-  }
-}
 
 function readFromUrl() {
   const params = new URLSearchParams(location.search);
@@ -40,43 +19,38 @@ function readFromUrl() {
   state.milestone = params.get("milestone") || "";
 }
 
-function writeUrl(push) {
-  const url = new URL(location.href);
-  const params = url.searchParams;
-  if (state.view === "milestones") params.delete("view");
-  else params.set("view", state.view);
+function applySearchParams(params, view) {
+  if (view === "milestones") params.delete("view");
+  else params.set("view", view);
   if (state.date) params.set("date", state.date);
   else params.delete("date");
-  if (state.milestone) params.set("milestone", state.milestone);
+  if (state.milestone && showsMilestoneFilter(view)) params.set("milestone", state.milestone);
   else params.delete("milestone");
   params.delete("q");
-  url.search = params.toString();
+}
+
+function writeUrl(push) {
+  const url = new URL(location.href);
+  applySearchParams(url.searchParams, state.view);
+  url.search = url.searchParams.toString();
   if (push) history.pushState(null, "", url);
   else history.replaceState(null, "", url);
 }
 
 function viewHref(view) {
   const url = new URL(location.href);
-  const params = url.searchParams;
-  if (view === "milestones") params.delete("view");
-  else params.set("view", view);
-  if (state.date) params.set("date", state.date);
-  else params.delete("date");
-  if (state.milestone) params.set("milestone", state.milestone);
-  else params.delete("milestone");
-  params.delete("q");
-  url.search = params.toString();
+  applySearchParams(url.searchParams, view);
+  url.search = url.searchParams.toString();
   return `${url.pathname}${url.search}`;
 }
 
 function applyServiceName() {
   const name = roadmapServiceName(roadmapConfig);
   document.getElementById("service-name").textContent = name;
-  document.getElementById("service-caption").textContent = name;
   document.title = name;
   const description = document.querySelector('meta[name="description"]');
   if (description) {
-    description.content = `${name}, grouping milestones, epics and stories into Now, Next and Later.`;
+    description.content = `Milestones, epics and stories for ${roadmapConfig.repo}, grouped into Now, Next and Later.`;
   }
 }
 
@@ -96,6 +70,7 @@ function syncNav() {
 }
 
 function syncForm() {
+  document.getElementById("filters").hidden = !showsMilestoneFilter(state.view);
   const milestone = document.getElementById("milestone-filter");
   if (document.activeElement !== milestone) milestone.value = state.milestone;
 }
@@ -110,8 +85,7 @@ function fillMilestones(roadmap) {
 }
 
 function showLoadError(message) {
-  document.getElementById("service-caption").hidden = true;
-  document.getElementById("view-heading-text").textContent = roadmapServiceName(roadmapConfig);
+  document.getElementById("view-heading-text").textContent = viewCopy(state.view, {}).heading;
   document.getElementById("view-intro").textContent = "";
   document.getElementById("results").innerHTML = `<div class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"><h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2><div class="govuk-error-summary__body"><p class="govuk-body">${escapeHtml(message)}</p></div></div>`;
 }
@@ -120,7 +94,7 @@ function renderDynamic({ focusHeading = false } = {}) {
   const resolved = resolveToday(state.date);
   const model = buildViewModel(state.roadmap, {
     today: resolved.today,
-    milestone: state.milestone,
+    milestone: showsMilestoneFilter(state.view) ? state.milestone : "",
   });
   const copy = viewCopy(state.view, model.counts);
   const heading = document.getElementById("view-heading");
@@ -128,18 +102,13 @@ function renderDynamic({ focusHeading = false } = {}) {
   document.title = roadmapServiceName(roadmapConfig);
   document.getElementById("view-intro").textContent = copy.intro;
   document.getElementById("as-of").innerHTML = renderAsOf(model, {
-    override: resolved.override,
     dateError: resolved.error,
   });
   document.getElementById("results").innerHTML = renderResults(model, state.view, state.roadmap);
-  document.getElementById("app-status").textContent = `${copy.heading}. As of ${formatLongDate(resolved.today)}. Current sprint ${model.currentSprint.title}.`;
-  document.getElementById("snapshot-meta").textContent = snapshotMeta(state.roadmap, state.mode);
+  document.getElementById("app-status").textContent = `${copy.heading}. ${currentSprintText(model.currentSprint)}.`;
   syncNav();
+  syncForm();
   if (focusHeading) heading.focus();
-}
-
-function setLiveStatus(message) {
-  document.getElementById("live-status").textContent = message;
 }
 
 function bind() {
@@ -160,51 +129,6 @@ function bind() {
     if (state.roadmap) renderDynamic();
   });
 
-  document.getElementById("load-live").addEventListener("click", async () => {
-    const input = document.getElementById("github-token");
-    const typed = input.value.trim();
-    if (typed) writeToken(typed);
-    input.value = "";
-    const token = typed || readToken();
-    if (!token) {
-      setLiveStatus("Enter a GitHub token first.");
-      return;
-    }
-    setLiveStatus("Loading live data…");
-    try {
-      state.roadmap = await loadLive(roadmapConfig, token);
-      state.mode = "live";
-      document.getElementById("filters").hidden = false;
-      fillMilestones(state.roadmap);
-      syncForm();
-      renderDynamic();
-      setLiveStatus("Live data loaded. The token stays in this browser session until you forget it.");
-    } catch (error) {
-      setLiveStatus(error.message || "Live data could not be loaded. The snapshot is still on screen.");
-    }
-  });
-
-  document.getElementById("use-snapshot").addEventListener("click", async () => {
-    setLiveStatus("Loading the snapshot…");
-    try {
-      state.roadmap = await loadSnapshot(roadmapConfig);
-      state.mode = "snapshot";
-      document.getElementById("filters").hidden = false;
-      fillMilestones(state.roadmap);
-      syncForm();
-      renderDynamic();
-      setLiveStatus("Showing the committed snapshot.");
-    } catch (error) {
-      setLiveStatus(error.message || "The snapshot could not be loaded.");
-    }
-  });
-
-  document.getElementById("forget-token").addEventListener("click", () => {
-    writeToken("");
-    document.getElementById("github-token").value = "";
-    setLiveStatus("Token forgotten. The roadmap on screen is unchanged.");
-  });
-
   window.addEventListener("popstate", () => {
     readFromUrl();
     syncForm();
@@ -217,14 +141,12 @@ async function init() {
   readFromUrl();
   syncNav();
   bind();
-  if (readToken()) setLiveStatus("A token is saved in this browser session.");
   try {
     state.roadmap = await loadSnapshot(roadmapConfig);
   } catch (error) {
     showLoadError(error.message || "The roadmap snapshot could not be loaded.");
     return;
   }
-  document.getElementById("filters").hidden = false;
   fillMilestones(state.roadmap);
   syncForm();
   renderDynamic();
