@@ -5,7 +5,7 @@ import { resolveToday } from "../js/query.js";
 import { buildSprints } from "../js/sprints.js";
 import { classifyItem, currentSprintNumber } from "../js/status.js";
 import { buildViewModel } from "../js/view-model.js";
-import { renderResults } from "../js/render.js";
+import { renderResults, viewCopy } from "../js/render.js";
 
 const sprints = buildSprints(roadmapConfig.sprints);
 
@@ -120,6 +120,16 @@ test("rendered milestone detail escapes markdown and lists child sprints", () =>
   const epics = renderResults(model, "epics", roadmap);
   assert.match(epics, /Feature catalogue/);
   assert.match(epics, /Outcome 1/);
+});
+
+test("count labels use story, epic and milestone plurals", () => {
+  assert.match(viewCopy("stories", { stories: 1 }).intro, /1 story\./);
+  assert.match(viewCopy("stories", { stories: 45 }).intro, /45 stories\./);
+  assert.doesNotMatch(viewCopy("stories", { stories: 45 }).intro, /storys/);
+  assert.match(viewCopy("epics", { epics: 1 }).intro, /1 epic\./);
+  assert.match(viewCopy("epics", { epics: 18 }).intro, /18 epics\./);
+  assert.match(viewCopy("milestones", { milestones: 1 }).intro, /1 milestone\./);
+  assert.match(viewCopy("milestones", { milestones: 3 }).intro, /3 milestones\./);
 });
 
 test("date query override and invalid dates", () => {

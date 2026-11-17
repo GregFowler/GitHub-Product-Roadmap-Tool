@@ -21,8 +21,16 @@ const STATUS_MODIFIER = {
   unscheduled: "orange",
 };
 
+const PLURALS = {
+  feature: "features",
+  epic: "epics",
+  story: "stories",
+  milestone: "milestones",
+};
+
 function plural(count, word) {
-  return `${count} ${word}${count === 1 ? "" : "s"}`;
+  const label = count === 1 ? word : PLURALS[word] || `${word}s`;
+  return `${count} ${label}`;
 }
 
 function tag(text, modifier = "") {
