@@ -23,8 +23,8 @@
     "epic": 8,
     "feature": 1,
     "milestone": 1,
-    "sprint": 2,
-    "sprint_start": "2026-12-07"
+    "sprint": 1,
+    "sprint_start": "2026-11-23"
   },
   {
     "issue_number": 29,
@@ -41,8 +41,8 @@
     "epic": 10,
     "feature": 1,
     "milestone": 1,
-    "sprint": 3,
-    "sprint_start": "2026-12-21"
+    "sprint": 2,
+    "sprint_start": "2026-12-07"
   },
   {
     "issue_number": 31,
@@ -50,8 +50,8 @@
     "epic": 10,
     "feature": 1,
     "milestone": 1,
-    "sprint": 3,
-    "sprint_start": "2026-12-21"
+    "sprint": 2,
+    "sprint_start": "2026-12-07"
   },
   {
     "issue_number": 32,
@@ -59,8 +59,8 @@
     "epic": 9,
     "feature": 1,
     "milestone": 1,
-    "sprint": 4,
-    "sprint_start": "2027-01-04"
+    "sprint": 3,
+    "sprint_start": "2026-12-21"
   },
   {
     "issue_number": 33,
@@ -68,8 +68,8 @@
     "epic": 9,
     "feature": 1,
     "milestone": 1,
-    "sprint": 4,
-    "sprint_start": "2027-01-04"
+    "sprint": 3,
+    "sprint_start": "2026-12-21"
   },
   {
     "issue_number": 34,
@@ -77,8 +77,8 @@
     "epic": 9,
     "feature": 1,
     "milestone": 1,
-    "sprint": 5,
-    "sprint_start": "2027-01-18"
+    "sprint": 4,
+    "sprint_start": "2027-01-04"
   },
   {
     "issue_number": 35,
@@ -95,8 +95,8 @@
     "epic": 11,
     "feature": 2,
     "milestone": 1,
-    "sprint": 6,
-    "sprint_start": "2027-02-01"
+    "sprint": 5,
+    "sprint_start": "2027-01-18"
   },
   {
     "issue_number": 37,
@@ -167,8 +167,8 @@
     "epic": 14,
     "feature": 3,
     "milestone": 2,
-    "sprint": 10,
-    "sprint_start": "2027-03-29"
+    "sprint": 3,
+    "sprint_start": "2026-12-21"
   },
   {
     "issue_number": 45,
@@ -176,8 +176,8 @@
     "epic": 14,
     "feature": 3,
     "milestone": 2,
-    "sprint": 10,
-    "sprint_start": "2027-03-29"
+    "sprint": 4,
+    "sprint_start": "2027-01-04"
   },
   {
     "issue_number": 46,
@@ -185,8 +185,8 @@
     "epic": 14,
     "feature": 3,
     "milestone": 2,
-    "sprint": 10,
-    "sprint_start": "2027-03-29"
+    "sprint": 4,
+    "sprint_start": "2027-01-04"
   },
   {
     "issue_number": 47,
@@ -194,8 +194,8 @@
     "epic": 15,
     "feature": 3,
     "milestone": 2,
-    "sprint": 11,
-    "sprint_start": "2027-04-12"
+    "sprint": 5,
+    "sprint_start": "2027-01-18"
   },
   {
     "issue_number": 48,
@@ -203,8 +203,8 @@
     "epic": 15,
     "feature": 3,
     "milestone": 2,
-    "sprint": 11,
-    "sprint_start": "2027-04-12"
+    "sprint": 6,
+    "sprint_start": "2027-02-01"
   },
   {
     "issue_number": 49,
@@ -212,8 +212,8 @@
     "epic": 16,
     "feature": 3,
     "milestone": 2,
-    "sprint": 12,
-    "sprint_start": "2027-04-26"
+    "sprint": 6,
+    "sprint_start": "2027-02-01"
   },
   {
     "issue_number": 50,
@@ -221,8 +221,8 @@
     "epic": 16,
     "feature": 3,
     "milestone": 2,
-    "sprint": 12,
-    "sprint_start": "2027-04-26"
+    "sprint": 10,
+    "sprint_start": "2027-03-29"
   },
   {
     "issue_number": 51,
@@ -230,8 +230,8 @@
     "epic": 17,
     "feature": 4,
     "milestone": 2,
-    "sprint": 13,
-    "sprint_start": "2027-05-10"
+    "sprint": 10,
+    "sprint_start": "2027-03-29"
   },
   {
     "issue_number": 52,
@@ -239,8 +239,8 @@
     "epic": 17,
     "feature": 4,
     "milestone": 2,
-    "sprint": 13,
-    "sprint_start": "2027-05-10"
+    "sprint": 10,
+    "sprint_start": "2027-03-29"
   },
   {
     "issue_number": 53,
@@ -248,8 +248,8 @@
     "epic": 18,
     "feature": 4,
     "milestone": 2,
-    "sprint": 13,
-    "sprint_start": "2027-05-10"
+    "sprint": 11,
+    "sprint_start": "2027-04-12"
   },
   {
     "issue_number": 54,
@@ -257,8 +257,8 @@
     "epic": 18,
     "feature": 4,
     "milestone": 2,
-    "sprint": 14,
-    "sprint_start": "2027-05-24"
+    "sprint": 11,
+    "sprint_start": "2027-04-12"
   },
   {
     "issue_number": 55,
@@ -266,8 +266,8 @@
     "epic": 19,
     "feature": 5,
     "milestone": 2,
-    "sprint": 14,
-    "sprint_start": "2027-05-24"
+    "sprint": 12,
+    "sprint_start": "2027-04-26"
   },
   {
     "issue_number": 56,
@@ -275,8 +275,8 @@
     "epic": 19,
     "feature": 5,
     "milestone": 2,
-    "sprint": 14,
-    "sprint_start": "2027-05-24"
+    "sprint": 12,
+    "sprint_start": "2027-04-26"
   },
   {
     "issue_number": 57,
@@ -284,8 +284,8 @@
     "epic": 20,
     "feature": 5,
     "milestone": 2,
-    "sprint": 15,
-    "sprint_start": "2027-06-07"
+    "sprint": 13,
+    "sprint_start": "2027-05-10"
   },
   {
     "issue_number": 58,
@@ -293,8 +293,8 @@
     "epic": 20,
     "feature": 5,
     "milestone": 2,
-    "sprint": 15,
-    "sprint_start": "2027-06-07"
+    "sprint": 13,
+    "sprint_start": "2027-05-10"
   },
   {
     "issue_number": 59,
@@ -302,8 +302,8 @@
     "epic": 21,
     "feature": 6,
     "milestone": 3,
-    "sprint": 16,
-    "sprint_start": "2027-06-21"
+    "sprint": 7,
+    "sprint_start": "2027-02-15"
   },
   {
     "issue_number": 60,
@@ -311,8 +311,8 @@
     "epic": 21,
     "feature": 6,
     "milestone": 3,
-    "sprint": 16,
-    "sprint_start": "2027-06-21"
+    "sprint": 8,
+    "sprint_start": "2027-03-01"
   },
   {
     "issue_number": 61,
@@ -320,8 +320,8 @@
     "epic": 21,
     "feature": 6,
     "milestone": 3,
-    "sprint": 17,
-    "sprint_start": "2027-07-05"
+    "sprint": 9,
+    "sprint_start": "2027-03-15"
   },
   {
     "issue_number": 62,
@@ -329,8 +329,8 @@
     "epic": 22,
     "feature": 6,
     "milestone": 3,
-    "sprint": 17,
-    "sprint_start": "2027-07-05"
+    "sprint": 11,
+    "sprint_start": "2027-04-12"
   },
   {
     "issue_number": 63,
@@ -338,8 +338,8 @@
     "epic": 22,
     "feature": 6,
     "milestone": 3,
-    "sprint": 18,
-    "sprint_start": "2027-07-19"
+    "sprint": 12,
+    "sprint_start": "2027-04-26"
   },
   {
     "issue_number": 64,
@@ -347,8 +347,8 @@
     "epic": 22,
     "feature": 6,
     "milestone": 3,
-    "sprint": 18,
-    "sprint_start": "2027-07-19"
+    "sprint": 13,
+    "sprint_start": "2027-05-10"
   },
   {
     "issue_number": 65,
@@ -356,8 +356,8 @@
     "epic": 23,
     "feature": 6,
     "milestone": 3,
-    "sprint": 19,
-    "sprint_start": "2027-08-02"
+    "sprint": 14,
+    "sprint_start": "2027-05-24"
   },
   {
     "issue_number": 66,
@@ -365,8 +365,8 @@
     "epic": 23,
     "feature": 6,
     "milestone": 3,
-    "sprint": 19,
-    "sprint_start": "2027-08-02"
+    "sprint": 14,
+    "sprint_start": "2027-05-24"
   },
   {
     "issue_number": 67,
@@ -374,8 +374,8 @@
     "epic": 24,
     "feature": 7,
     "milestone": 3,
-    "sprint": 20,
-    "sprint_start": "2027-08-16"
+    "sprint": 15,
+    "sprint_start": "2027-06-07"
   },
   {
     "issue_number": 68,
@@ -383,8 +383,8 @@
     "epic": 24,
     "feature": 7,
     "milestone": 3,
-    "sprint": 20,
-    "sprint_start": "2027-08-16"
+    "sprint": 15,
+    "sprint_start": "2027-06-07"
   },
   {
     "issue_number": 69,
@@ -392,8 +392,8 @@
     "epic": 25,
     "feature": 7,
     "milestone": 3,
-    "sprint": 21,
-    "sprint_start": "2027-08-30"
+    "sprint": 16,
+    "sprint_start": "2027-06-21"
   },
   {
     "issue_number": 70,
@@ -401,7 +401,7 @@
     "epic": 25,
     "feature": 7,
     "milestone": 3,
-    "sprint": 21,
-    "sprint_start": "2027-08-30"
+    "sprint": 16,
+    "sprint_start": "2027-06-21"
   }
 ]

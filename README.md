@@ -12,7 +12,7 @@ The sample data is the public repository [GregFowler/Demo-Product-Map-Repo](http
 
 ## Views
 
-Use the links in the service header. The address keeps the current filters, for example `?view=epics&date=2027-04-01`.
+Use the links in the service header. The address keeps the current filters, for example `?view=epics&date=2027-01-18`.
 
 | View | What it shows |
 | --- | --- |
@@ -50,9 +50,9 @@ Then:
 
 Stories with a sprint still count if some sibling stories are unscheduled. The earliest scheduled sprint wins.
 
-The page shows the date it is using and the current sprint. Add `?date=YYYY-MM-DD` to demo another day, or use **View as of** and **Update date**. Example: [`?date=2027-04-01`](https://gregfowler.github.io/GitHub-Product-Roadmap-Tool/?date=2027-04-01). **Reset to today** clears that override. An invalid date is ignored and today is shown.
+The page shows the date it is using and the current sprint. Add `?date=YYYY-MM-DD` to demo another day, or use **View as of** and **Update date**. Example: [`?date=2027-01-18`](https://gregfowler.github.io/GitHub-Product-Roadmap-Tool/?date=2027-01-18). **Reset to today** clears that override. An invalid date is ignored and today is shown.
 
-On 17 November 2026 (before Sprint 1), Outcome 1 is Now because its stories start in Sprint 1. Outcome 2 and Outcome 3 are Later. Epics are spread across Now, Next and Later. On 1 April 2027 the current sprint is Sprint 10, so more of the roadmap has moved into Now and Next.
+On 17 November 2026 (before Sprint 1), Outcome 1 is Now because its stories start in Sprint 1. Outcome 2 is Next because its earliest story is Sprint 3. Outcome 3 is Later because its earliest story is Sprint 7. On 18 January 2027 the current sprint is Sprint 5, so Outcome 2 moves into Now and Outcome 3 moves into Next.
 
 ## Data
 

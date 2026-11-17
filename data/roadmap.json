@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T11:56:00.710Z",
+  "generatedAt": "2026-11-17T12:52:50.703Z",
   "source": {
     "owner": "GregFowler",
     "repo": "Demo-Product-Map-Repo",
@@ -11,7 +11,7 @@
     "projectTitle": "Demo Product Roadmap",
     "iterationField": "Sprint",
     "issueSource": "graphql",
-    "sprintAssignments": "github_project",
+    "sprintAssignments": "sprint_plan",
     "sprintCalendar": "config"
   },
   "sprints": [
@@ -547,9 +547,9 @@
       "milestone": 1,
       "feature": 1,
       "epic": 8,
-      "sprint": 2,
-      "sprintStart": "2026-12-07",
-      "sprintEnd": "2026-12-20"
+      "sprint": 1,
+      "sprintStart": "2026-11-23",
+      "sprintEnd": "2026-12-06"
     },
     {
       "number": 29,
@@ -579,9 +579,9 @@
       "milestone": 1,
       "feature": 1,
       "epic": 10,
-      "sprint": 3,
-      "sprintStart": "2026-12-21",
-      "sprintEnd": "2027-01-03"
+      "sprint": 2,
+      "sprintStart": "2026-12-07",
+      "sprintEnd": "2026-12-20"
     },
     {
       "number": 31,
@@ -595,9 +595,9 @@
       "milestone": 1,
       "feature": 1,
       "epic": 10,
-      "sprint": 3,
-      "sprintStart": "2026-12-21",
-      "sprintEnd": "2027-01-03"
+      "sprint": 2,
+      "sprintStart": "2026-12-07",
+      "sprintEnd": "2026-12-20"
     },
     {
       "number": 32,
@@ -611,9 +611,9 @@
       "milestone": 1,
       "feature": 1,
       "epic": 9,
-      "sprint": 4,
-      "sprintStart": "2027-01-04",
-      "sprintEnd": "2027-01-17"
+      "sprint": 3,
+      "sprintStart": "2026-12-21",
+      "sprintEnd": "2027-01-03"
     },
     {
       "number": 33,
@@ -627,9 +627,9 @@
       "milestone": 1,
       "feature": 1,
       "epic": 9,
-      "sprint": 4,
-      "sprintStart": "2027-01-04",
-      "sprintEnd": "2027-01-17"
+      "sprint": 3,
+      "sprintStart": "2026-12-21",
+      "sprintEnd": "2027-01-03"
     },
     {
       "number": 34,
@@ -643,9 +643,9 @@
       "milestone": 1,
       "feature": 1,
       "epic": 9,
-      "sprint": 5,
-      "sprintStart": "2027-01-18",
-      "sprintEnd": "2027-01-31"
+      "sprint": 4,
+      "sprintStart": "2027-01-04",
+      "sprintEnd": "2027-01-17"
     },
     {
       "number": 35,
@@ -675,9 +675,9 @@
       "milestone": 1,
       "feature": 2,
       "epic": 11,
-      "sprint": 6,
-      "sprintStart": "2027-02-01",
-      "sprintEnd": "2027-02-14"
+      "sprint": 5,
+      "sprintStart": "2027-01-18",
+      "sprintEnd": "2027-01-31"
     },
     {
       "number": 37,
@@ -803,9 +803,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 14,
-      "sprint": 10,
-      "sprintStart": "2027-03-29",
-      "sprintEnd": "2027-04-11"
+      "sprint": 3,
+      "sprintStart": "2026-12-21",
+      "sprintEnd": "2027-01-03"
     },
     {
       "number": 45,
@@ -819,9 +819,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 14,
-      "sprint": 10,
-      "sprintStart": "2027-03-29",
-      "sprintEnd": "2027-04-11"
+      "sprint": 4,
+      "sprintStart": "2027-01-04",
+      "sprintEnd": "2027-01-17"
     },
     {
       "number": 46,
@@ -835,9 +835,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 14,
-      "sprint": 10,
-      "sprintStart": "2027-03-29",
-      "sprintEnd": "2027-04-11"
+      "sprint": 4,
+      "sprintStart": "2027-01-04",
+      "sprintEnd": "2027-01-17"
     },
     {
       "number": 47,
@@ -851,9 +851,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 15,
-      "sprint": 11,
-      "sprintStart": "2027-04-12",
-      "sprintEnd": "2027-04-25"
+      "sprint": 5,
+      "sprintStart": "2027-01-18",
+      "sprintEnd": "2027-01-31"
     },
     {
       "number": 48,
@@ -867,9 +867,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 15,
-      "sprint": 11,
-      "sprintStart": "2027-04-12",
-      "sprintEnd": "2027-04-25"
+      "sprint": 6,
+      "sprintStart": "2027-02-01",
+      "sprintEnd": "2027-02-14"
     },
     {
       "number": 49,
@@ -883,9 +883,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 16,
-      "sprint": 12,
-      "sprintStart": "2027-04-26",
-      "sprintEnd": "2027-05-09"
+      "sprint": 6,
+      "sprintStart": "2027-02-01",
+      "sprintEnd": "2027-02-14"
     },
     {
       "number": 50,
@@ -899,9 +899,9 @@
       "milestone": 2,
       "feature": 3,
       "epic": 16,
-      "sprint": 12,
-      "sprintStart": "2027-04-26",
-      "sprintEnd": "2027-05-09"
+      "sprint": 10,
+      "sprintStart": "2027-03-29",
+      "sprintEnd": "2027-04-11"
     },
     {
       "number": 51,
@@ -915,9 +915,9 @@
       "milestone": 2,
       "feature": 4,
       "epic": 17,
-      "sprint": 13,
-      "sprintStart": "2027-05-10",
-      "sprintEnd": "2027-05-23"
+      "sprint": 10,
+      "sprintStart": "2027-03-29",
+      "sprintEnd": "2027-04-11"
     },
     {
       "number": 52,
@@ -931,9 +931,9 @@
       "milestone": 2,
       "feature": 4,
       "epic": 17,
-      "sprint": 13,
-      "sprintStart": "2027-05-10",
-      "sprintEnd": "2027-05-23"
+      "sprint": 10,
+      "sprintStart": "2027-03-29",
+      "sprintEnd": "2027-04-11"
     },
     {
       "number": 53,
@@ -947,9 +947,9 @@
       "milestone": 2,
       "feature": 4,
       "epic": 18,
-      "sprint": 13,
-      "sprintStart": "2027-05-10",
-      "sprintEnd": "2027-05-23"
+      "sprint": 11,
+      "sprintStart": "2027-04-12",
+      "sprintEnd": "2027-04-25"
     },
     {
       "number": 54,
@@ -963,9 +963,9 @@
       "milestone": 2,
       "feature": 4,
       "epic": 18,
-      "sprint": 14,
-      "sprintStart": "2027-05-24",
-      "sprintEnd": "2027-06-06"
+      "sprint": 11,
+      "sprintStart": "2027-04-12",
+      "sprintEnd": "2027-04-25"
     },
     {
       "number": 55,
@@ -979,9 +979,9 @@
       "milestone": 2,
       "feature": 5,
       "epic": 19,
-      "sprint": 14,
-      "sprintStart": "2027-05-24",
-      "sprintEnd": "2027-06-06"
+      "sprint": 12,
+      "sprintStart": "2027-04-26",
+      "sprintEnd": "2027-05-09"
     },
     {
       "number": 56,
@@ -995,9 +995,9 @@
       "milestone": 2,
       "feature": 5,
       "epic": 19,
-      "sprint": 14,
-      "sprintStart": "2027-05-24",
-      "sprintEnd": "2027-06-06"
+      "sprint": 12,
+      "sprintStart": "2027-04-26",
+      "sprintEnd": "2027-05-09"
     },
     {
       "number": 57,
@@ -1011,9 +1011,9 @@
       "milestone": 2,
       "feature": 5,
       "epic": 20,
-      "sprint": 15,
-      "sprintStart": "2027-06-07",
-      "sprintEnd": "2027-06-20"
+      "sprint": 13,
+      "sprintStart": "2027-05-10",
+      "sprintEnd": "2027-05-23"
     },
     {
       "number": 58,
@@ -1027,9 +1027,9 @@
       "milestone": 2,
       "feature": 5,
       "epic": 20,
-      "sprint": 15,
-      "sprintStart": "2027-06-07",
-      "sprintEnd": "2027-06-20"
+      "sprint": 13,
+      "sprintStart": "2027-05-10",
+      "sprintEnd": "2027-05-23"
     },
     {
       "number": 59,
@@ -1043,9 +1043,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 21,
-      "sprint": 16,
-      "sprintStart": "2027-06-21",
-      "sprintEnd": "2027-07-04"
+      "sprint": 7,
+      "sprintStart": "2027-02-15",
+      "sprintEnd": "2027-02-28"
     },
     {
       "number": 60,
@@ -1059,9 +1059,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 21,
-      "sprint": 16,
-      "sprintStart": "2027-06-21",
-      "sprintEnd": "2027-07-04"
+      "sprint": 8,
+      "sprintStart": "2027-03-01",
+      "sprintEnd": "2027-03-14"
     },
     {
       "number": 61,
@@ -1075,9 +1075,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 21,
-      "sprint": 17,
-      "sprintStart": "2027-07-05",
-      "sprintEnd": "2027-07-18"
+      "sprint": 9,
+      "sprintStart": "2027-03-15",
+      "sprintEnd": "2027-03-28"
     },
     {
       "number": 62,
@@ -1091,9 +1091,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 22,
-      "sprint": 17,
-      "sprintStart": "2027-07-05",
-      "sprintEnd": "2027-07-18"
+      "sprint": 11,
+      "sprintStart": "2027-04-12",
+      "sprintEnd": "2027-04-25"
     },
     {
       "number": 63,
@@ -1107,9 +1107,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 22,
-      "sprint": 18,
-      "sprintStart": "2027-07-19",
-      "sprintEnd": "2027-08-01"
+      "sprint": 12,
+      "sprintStart": "2027-04-26",
+      "sprintEnd": "2027-05-09"
     },
     {
       "number": 64,
@@ -1123,9 +1123,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 22,
-      "sprint": 18,
-      "sprintStart": "2027-07-19",
-      "sprintEnd": "2027-08-01"
+      "sprint": 13,
+      "sprintStart": "2027-05-10",
+      "sprintEnd": "2027-05-23"
     },
     {
       "number": 65,
@@ -1139,9 +1139,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 23,
-      "sprint": 19,
-      "sprintStart": "2027-08-02",
-      "sprintEnd": "2027-08-15"
+      "sprint": 14,
+      "sprintStart": "2027-05-24",
+      "sprintEnd": "2027-06-06"
     },
     {
       "number": 66,
@@ -1155,9 +1155,9 @@
       "milestone": 3,
       "feature": 6,
       "epic": 23,
-      "sprint": 19,
-      "sprintStart": "2027-08-02",
-      "sprintEnd": "2027-08-15"
+      "sprint": 14,
+      "sprintStart": "2027-05-24",
+      "sprintEnd": "2027-06-06"
     },
     {
       "number": 67,
@@ -1171,9 +1171,9 @@
       "milestone": 3,
       "feature": 7,
       "epic": 24,
-      "sprint": 20,
-      "sprintStart": "2027-08-16",
-      "sprintEnd": "2027-08-29"
+      "sprint": 15,
+      "sprintStart": "2027-06-07",
+      "sprintEnd": "2027-06-20"
     },
     {
       "number": 68,
@@ -1187,9 +1187,9 @@
       "milestone": 3,
       "feature": 7,
       "epic": 24,
-      "sprint": 20,
-      "sprintStart": "2027-08-16",
-      "sprintEnd": "2027-08-29"
+      "sprint": 15,
+      "sprintStart": "2027-06-07",
+      "sprintEnd": "2027-06-20"
     },
     {
       "number": 69,
@@ -1203,9 +1203,9 @@
       "milestone": 3,
       "feature": 7,
       "epic": 25,
-      "sprint": 21,
-      "sprintStart": "2027-08-30",
-      "sprintEnd": "2027-09-12"
+      "sprint": 16,
+      "sprintStart": "2027-06-21",
+      "sprintEnd": "2027-07-04"
     },
     {
       "number": 70,
@@ -1219,9 +1219,9 @@
       "milestone": 3,
       "feature": 7,
       "epic": 25,
-      "sprint": 21,
-      "sprintStart": "2027-08-30",
-      "sprintEnd": "2027-09-12"
+      "sprint": 16,
+      "sprintStart": "2027-06-21",
+      "sprintEnd": "2027-07-04"
     }
   ]
 }
