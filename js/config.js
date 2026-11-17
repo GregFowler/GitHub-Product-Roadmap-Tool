@@ -24,5 +24,9 @@ export const roadmapConfig = {
     titlePrefix: "Sprint",
   },
   snapshotUrl: "data/roadmap.json",
-  serviceName: "Product roadmap",
 };
+
+/** Page title and service name. It follows the configured source repository. */
+export function roadmapServiceName(config = roadmapConfig) {
+  return `Product roadmap for ${config.repo}`;
+}

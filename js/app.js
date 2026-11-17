@@ -1,4 +1,4 @@
-import { roadmapConfig } from "./config.js";
+import { roadmapConfig, roadmapServiceName } from "./config.js";
 import { loadLive, loadSnapshot } from "./data.js";
 import { escapeHtml } from "./markdown.js";
 import { formatLongDate } from "./dates.js";
@@ -13,7 +13,6 @@ const state = {
   view: "milestones",
   date: "",
   milestone: "",
-  query: "",
   mode: "snapshot",
 };
 
@@ -39,7 +38,6 @@ function readFromUrl() {
   state.view = parseView(params.get("view"));
   state.date = params.get("date") || "";
   state.milestone = params.get("milestone") || "";
-  state.query = params.get("q") || "";
 }
 
 function writeUrl(push) {
@@ -51,8 +49,7 @@ function writeUrl(push) {
   else params.delete("date");
   if (state.milestone) params.set("milestone", state.milestone);
   else params.delete("milestone");
-  if (state.query) params.set("q", state.query);
-  else params.delete("q");
+  params.delete("q");
   url.search = params.toString();
   if (push) history.pushState(null, "", url);
   else history.replaceState(null, "", url);
@@ -67,10 +64,20 @@ function viewHref(view) {
   else params.delete("date");
   if (state.milestone) params.set("milestone", state.milestone);
   else params.delete("milestone");
-  if (state.query) params.set("q", state.query);
-  else params.delete("q");
+  params.delete("q");
   url.search = params.toString();
   return `${url.pathname}${url.search}`;
+}
+
+function applyServiceName() {
+  const name = roadmapServiceName(roadmapConfig);
+  document.getElementById("service-name").textContent = name;
+  document.getElementById("service-caption").textContent = name;
+  document.title = name;
+  const description = document.querySelector('meta[name="description"]');
+  if (description) {
+    description.content = `${name}, grouping milestones, epics and stories into Now, Next and Later.`;
+  }
 }
 
 function syncNav() {
@@ -89,12 +96,8 @@ function syncNav() {
 }
 
 function syncForm() {
-  const search = document.getElementById("search");
   const milestone = document.getElementById("milestone-filter");
-  const date = document.getElementById("as-of-date");
-  if (document.activeElement !== search) search.value = state.query;
   if (document.activeElement !== milestone) milestone.value = state.milestone;
-  if (document.activeElement !== date) date.value = state.date;
 }
 
 function fillMilestones(roadmap) {
@@ -107,7 +110,8 @@ function fillMilestones(roadmap) {
 }
 
 function showLoadError(message) {
-  document.getElementById("view-heading").textContent = "Product roadmap";
+  document.getElementById("service-caption").hidden = true;
+  document.getElementById("view-heading-text").textContent = roadmapServiceName(roadmapConfig);
   document.getElementById("view-intro").textContent = "";
   document.getElementById("results").innerHTML = `<div class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"><h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2><div class="govuk-error-summary__body"><p class="govuk-body">${escapeHtml(message)}</p></div></div>`;
 }
@@ -117,12 +121,11 @@ function renderDynamic({ focusHeading = false } = {}) {
   const model = buildViewModel(state.roadmap, {
     today: resolved.today,
     milestone: state.milestone,
-    query: state.query,
   });
   const copy = viewCopy(state.view, model.counts);
   const heading = document.getElementById("view-heading");
-  heading.textContent = copy.heading;
-  document.title = `${copy.heading} - ${roadmapConfig.serviceName}`;
+  document.getElementById("view-heading-text").textContent = copy.heading;
+  document.title = roadmapServiceName(roadmapConfig);
   document.getElementById("view-intro").textContent = copy.intro;
   document.getElementById("as-of").innerHTML = renderAsOf(model, {
     override: resolved.override,
@@ -151,29 +154,8 @@ function bind() {
     renderDynamic({ focusHeading: true });
   });
 
-  document.getElementById("search").addEventListener("input", (event) => {
-    state.query = event.target.value;
-    writeUrl(false);
-    if (state.roadmap) renderDynamic();
-  });
-
   document.getElementById("milestone-filter").addEventListener("change", (event) => {
     state.milestone = event.target.value;
-    writeUrl(true);
-    if (state.roadmap) renderDynamic();
-  });
-
-  document.getElementById("date-form").addEventListener("submit", (event) => {
-    event.preventDefault();
-    state.date = document.getElementById("as-of-date").value;
-    writeUrl(true);
-    if (state.roadmap) renderDynamic();
-  });
-
-  document.getElementById("reset-date").addEventListener("click", (event) => {
-    event.preventDefault();
-    state.date = "";
-    document.getElementById("as-of-date").value = "";
     writeUrl(true);
     if (state.roadmap) renderDynamic();
   });
@@ -231,6 +213,7 @@ function bind() {
 }
 
 async function init() {
+  applyServiceName();
   readFromUrl();
   syncNav();
   bind();

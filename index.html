@@ -2,9 +2,9 @@
 <html lang="en" class="govuk-template">
   <head>
     <meta charset="utf-8">
-    <title>Product roadmap</title>
+    <title>Product roadmap for Demo-Product-Map-Repo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="Prototype product roadmap grouping milestones, epics and stories into Now, Next and Later.">
+    <meta name="description" content="Product roadmap for Demo-Product-Map-Repo, grouping milestones, epics and stories into Now, Next and Later.">
     <meta name="theme-color" content="#f4f8fb">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="vendor/govuk/govuk-frontend.min.css">
@@ -18,7 +18,7 @@
       <div class="govuk-width-container">
         <div class="govuk-service-navigation__container">
           <span class="govuk-service-navigation__service-name">
-            <a href="./" class="govuk-service-navigation__link">Product roadmap</a>
+            <a href="./" class="govuk-service-navigation__link" id="service-name">Product roadmap for Demo-Product-Map-Repo</a>
           </span>
           <nav aria-label="Roadmap views" class="govuk-service-navigation__wrapper">
             <ul class="govuk-service-navigation__list" id="view-nav">
@@ -48,7 +48,10 @@
           </p>
         </div>
 
-        <h1 class="govuk-heading-l" id="view-heading" tabindex="-1">Milestones</h1>
+        <h1 class="govuk-heading-l" id="view-heading" tabindex="-1">
+          <span class="govuk-caption-l" id="service-caption">Product roadmap for Demo-Product-Map-Repo</span>
+          <span id="view-heading-text">Milestones</span>
+        </h1>
         <p class="govuk-body" id="view-intro">Loading roadmap…</p>
         <p id="app-status" class="govuk-visually-hidden" aria-live="polite"></p>
 
@@ -59,21 +62,6 @@
               <option value="">All milestones</option>
             </select>
           </div>
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="search">Search</label>
-            <input class="govuk-input" id="search" name="q" type="search" autocomplete="off">
-          </div>
-          <form id="date-form">
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="as-of-date">View as of</label>
-              <div id="as-of-hint" class="govuk-hint">Blank means today. You can also use ?date=YYYY-MM-DD.</div>
-              <input class="govuk-input" id="as-of-date" name="date" type="date" aria-describedby="as-of-hint">
-            </div>
-            <div class="app-date-actions">
-              <button class="govuk-button" data-module="govuk-button" type="submit">Update date</button>
-              <a class="govuk-link" href="./" id="reset-date">Reset to today</a>
-            </div>
-          </form>
         </div>
 
         <div id="as-of"></div>

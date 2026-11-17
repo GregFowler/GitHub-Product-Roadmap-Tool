@@ -59,8 +59,9 @@ function issueLink(url, title) {
   return `<a class="govuk-link" href="${escapeHtml(url)}">${escapeHtml(title)}</a>`;
 }
 
-function githubAction(url, title) {
-  return `<ul class="govuk-summary-card__actions"><li class="govuk-summary-card__action"><a class="govuk-link" href="${escapeHtml(url)}">View on GitHub<span class="govuk-visually-hidden"> (${escapeHtml(title)})</span></a></li></ul>`;
+function githubTitleLink(url, title, className = "") {
+  const classes = ["govuk-link", className].filter(Boolean).join(" ");
+  return `<a class="${classes}" href="${escapeHtml(url)}">${escapeHtml(title)}<span class="govuk-visually-hidden"> on GitHub</span></a>`;
 }
 
 function summaryList(rows) {
@@ -151,14 +152,12 @@ function milestoneCard(entry, model, issueBaseUrl) {
   const body = `
     <h4 class="govuk-heading-s">Description</h4>
     ${descriptionHtml(milestone.description, issueBaseUrl)}
-    <p class="govuk-body">${issueLink(milestone.url, "View milestone on GitHub")}</p>
     <h4 class="govuk-heading-s">Features, epics and stories</h4>
     ${renderMilestoneChildren(milestone, index)}
   `;
   return `<article class="govuk-summary-card roadmap-card">
     <div class="govuk-summary-card__title-wrapper">
-      <h3 class="govuk-summary-card__title">${escapeHtml(milestone.title)}</h3>
-      ${githubAction(milestone.url, milestone.title)}
+      <h3 class="govuk-summary-card__title">${githubTitleLink(milestone.url, milestone.title, "roadmap-card__title-link")}</h3>
     </div>
     <div class="govuk-summary-card__content">
       <p class="roadmap-card__tags">${statusTag(entry.classification.status)} ${stateTag(milestone.state)} ${tag(range.text, range.modifier)}</p>
@@ -184,14 +183,12 @@ function epicCard(entry, model, issueBaseUrl) {
   const body = `
     <h4 class="govuk-heading-s">Description</h4>
     ${descriptionHtml(epic.body, issueBaseUrl)}
-    <p class="govuk-body">${issueLink(epic.url, "View epic on GitHub")}</p>
     <h4 class="govuk-heading-s">Stories</h4>
     ${storyItems(entry.stories)}
   `;
   return `<article class="govuk-summary-card roadmap-card">
     <div class="govuk-summary-card__title-wrapper">
-      <h3 class="govuk-summary-card__title">${escapeHtml(epic.title)}</h3>
-      ${githubAction(epic.url, epic.title)}
+      <h3 class="govuk-summary-card__title">${githubTitleLink(epic.url, epic.title, "roadmap-card__title-link")}</h3>
     </div>
     <div class="govuk-summary-card__content">
       <p class="roadmap-card__tags">${statusTag(entry.classification.status)} ${stateTag(epic.state)} ${tag(range.text, range.modifier)}</p>
@@ -219,71 +216,102 @@ function renderBoard(columns, cardRenderer) {
   }).join("")}</div>`;
 }
 
-function joinList(items) {
-  if (items.length <= 1) return items[0] || "";
-  if (items.length === 2) return `${items[0]} and ${items[1]}`;
-  return `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
-}
-
-function sprintHeading(numbers) {
-  if (numbers.length === 0) return "";
-  if (numbers.length === 1) return `Sprint ${numbers[0]}`;
-  return `Sprints ${joinList(numbers.map(String))}`;
-}
-
 function renderStory(story, issueBaseUrl) {
   const label = story.sprint ? `Sprint ${story.sprint}` : "Unscheduled";
   const modifier = story.sprint ? "" : "orange";
   const when = story.sprintStart
     ? `${formatLongDate(story.sprintStart)} to ${formatLongDate(story.sprintEnd)}`
     : "No sprint date";
-  const body = `
-    ${descriptionHtml(story.body, issueBaseUrl)}
-    <p class="govuk-body">${issueLink(story.url, `View story on GitHub: ${story.title}`)}</p>
-  `;
+  const body = descriptionHtml(story.body, issueBaseUrl);
   return `<article class="story-card">
-    <h4 class="story-card__title">${issueLink(story.url, story.title)}</h4>
+    <h4 class="story-card__title">${githubTitleLink(story.url, story.title)}</h4>
     <p class="roadmap-card__tags">${tag(label, modifier)} ${stateTag(story.state)}</p>
     <p class="govuk-body-s">${escapeHtml(when)}</p>
     ${details("Show description", story.title, body)}
   </article>`;
 }
 
-function renderStories(model, issueBaseUrl) {
+function sprintLines(numbers, sprints) {
+  return numbers
+    .filter((number) => Number.isInteger(number))
+    .map((number) => {
+      const sprint = sprints.find((item) => item.number === number);
+      if (!sprint) return escapeHtml(`Sprint ${number}`);
+      return escapeHtml(`Sprint ${number} (${formatLongDate(sprint.start)} to ${formatLongDate(sprint.end)})`);
+    })
+    .join("<br>");
+}
+
+function monthStartsOpen(month, model) {
+  if (month.key && String(model.today).slice(0, 7) === month.key) return true;
+  const current = model.currentSprint?.number;
+  return Number.isInteger(current) && month.sprintNumbers.includes(current);
+}
+
+function renderEpicGroup(group, issueBaseUrl) {
+  const feature = group.feature ? escapeHtml(group.feature.title) : "No feature";
+  const title = group.epic
+    ? githubTitleLink(group.epic.url, group.epic.title, "epic-group__title-link")
+    : "No epic";
+  return `<section class="epic-group">
+    <h3 class="govuk-heading-s">${title}</h3>
+    <p class="govuk-body-s">${feature}</p>
+    ${group.stories.map((story) => renderStory(story, issueBaseUrl)).join("")}
+  </section>`;
+}
+
+function epicGroupsFromStories(stories, index) {
+  const epicIds = [...new Set(stories.map((story) => story.epic ?? 0))].sort((a, b) => a - b);
+  return epicIds.map((epicId) => ({
+    epic: index.epics.get(epicId) || null,
+    feature: index.features.get(index.epics.get(epicId)?.feature) || null,
+    stories: stories.filter((story) => (story.epic ?? 0) === epicId).sort((a, b) => a.number - b.number),
+  }));
+}
+
+function monthSection({ id, heading, summaryHtml, open, modifier = "", body }) {
+  const classes = ["govuk-details", "app-month", modifier].filter(Boolean).join(" ");
+  return `<details class="${classes}"${open ? " open" : ""}>
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        <h2 class="govuk-heading-m app-month__heading" id="${escapeHtml(id)}">${escapeHtml(heading)}</h2>
+        <p class="govuk-body-s app-month__sprints">${summaryHtml}</p>
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <div class="app-epic-grid">${body}</div>
+    </div>
+  </details>`;
+}
+
+function renderStories(model, roadmap) {
+  const issueBaseUrl = `${roadmap.source.repoUrl}/issues`;
+  const sprints = roadmap.sprints || [];
   if (model.monthGroups.length === 0 && model.unscheduledStories.length === 0) {
     return `<p class="govuk-body">Nothing matches these filters.</p>`;
   }
   const months = model.monthGroups
-    .map((month) => {
-      const sprintText = sprintHeading(month.sprintNumbers);
-      const epics = month.epics
-        .map((group) => {
-          const feature = group.feature ? escapeHtml(group.feature.title) : "No feature";
-          const title = group.epic ? escapeHtml(group.epic.title) : "No epic";
-          return `<section class="epic-group">
-            <h3 class="govuk-heading-s">${title}</h3>
-            <p class="govuk-body-s">${feature}</p>
-            ${group.stories.map((story) => renderStory(story, issueBaseUrl)).join("")}
-          </section>`;
-        })
-        .join("");
-      return `<section class="app-month" aria-labelledby="month-${month.key}">
-        <h2 class="govuk-heading-m" id="month-${month.key}">${escapeHtml(month.label)}</h2>
-        <p class="govuk-body-s">${escapeHtml(sprintText)}</p>
-        ${epics}
-      </section>`;
-    })
+    .map((month) => monthSection({
+      id: `month-${month.key}`,
+      heading: month.label,
+      summaryHtml: sprintLines(month.sprintNumbers, sprints),
+      open: monthStartsOpen(month, model),
+      body: month.epics.map((group) => renderEpicGroup(group, issueBaseUrl)).join(""),
+    }))
     .join("");
   const unscheduled = model.unscheduledStories.length
-    ? `<section class="app-month" aria-labelledby="month-unscheduled">
-        <h2 class="govuk-heading-m" id="month-unscheduled">Unscheduled</h2>
-        <p class="govuk-body-s">These stories have no sprint.</p>
-        ${model.unscheduledStories.map((story) => renderStory(story, issueBaseUrl)).join("")}
-      </section>`
+    ? monthSection({
+      id: "month-unscheduled",
+      heading: "Unscheduled",
+      summaryHtml: "These stories have no sprint.",
+      open: false,
+      modifier: "app-month--unscheduled",
+      body: epicGroupsFromStories(model.unscheduledStories, model.index)
+        .map((group) => renderEpicGroup(group, issueBaseUrl))
+        .join(""),
+    })
     : "";
-  return `<p class="govuk-body-s app-scroll-hint app-scroll-hint--wide">Scroll sideways for later months.</p>
-    <p class="govuk-body-s app-scroll-hint app-scroll-hint--narrow">Months are listed from earliest to latest.</p>
-    <div class="app-timeline">${months}${unscheduled}</div>`;
+  return `<div class="app-months">${months}${unscheduled}</div>`;
 }
 
 export function viewCopy(view, counts) {
@@ -296,7 +324,7 @@ export function viewCopy(view, counts) {
   if (view === "stories") {
     return {
       heading: "Stories",
-      intro: `Stories are grouped by the month their sprint starts, then by epic. A sprint that crosses two months is shown in the month it starts. ${plural(counts.stories, "story")}.`,
+      intro: `Stories are grouped by the month their sprint starts, then by epic. A sprint that crosses two months is shown in the month it starts. The current month, and any month that includes the current sprint, starts open. ${plural(counts.stories, "story")}.`,
     };
   }
   return {
@@ -322,7 +350,7 @@ export function renderAsOf(model, { override = false, dateError = "" } = {}) {
 
 export function renderResults(model, view, roadmap) {
   const issueBaseUrl = `${roadmap.source.repoUrl}/issues`;
-  if (view === "stories") return renderStories(model, issueBaseUrl);
+  if (view === "stories") return renderStories(model, roadmap);
   if (view === "epics") return renderBoard(model.epicColumns, (entry) => epicCard(entry, model, issueBaseUrl));
   return renderBoard(model.milestoneColumns, (entry) => milestoneCard(entry, model, issueBaseUrl));
 }
